@@ -1,0 +1,29 @@
+Windows 7 USB and No compatible USB devices detected - Last Modified 2013-08-08 00:46 UTC - Created 2013-08-08 00:37 UTC
+Using the Windows 7 USB/DVD Download Tool and run into "Windows 7 USB and No compatible USB devices detected"?
+
+The tool doesn't like some USB drives (especially large hard drives inside enclosures).
+
+Just create it manually with diskpart and 7-zip (from a Windows 7 64-bit or 32-bit system of course).
+
+http://4sysops.com/archives/windows-7-usbdvd-download-tool-wudt-is-unable-to-copy-files/
+
+Notes from above link in-case it goes dead:
+
+Open an admin cmd prompt (Start, cmd, ctrl+shift+enter)
+
+>diskpart
+ >list disk
+ >select disk #
+ >clean
+ >create partition primary
+ >select partition 1
+ >active
+ >format quick fs=fat32
+ >assign
+ >exit
+
+Extract the Windows 7 ISO to the root of the drive.
+
+If you want NTFS instead of FAT32 you also need to do "Bootsect.exe /nt60 X:" which you will find the bootsect.exe on the extracted drive in \boot\bootsect.exe
+
+This does erase everything on the USB drive. Be careful.

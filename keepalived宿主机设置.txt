@@ -1,0 +1,15 @@
+1. /etc/sysctl.conf 添加内容：
+net.ipv4.ip_forward = 1
+net.ipv4.ip_nonlocal_bind = 1
+net.ipv4.conf.lo.arp_ignore = 1
+net.ipv4.conf.lo.arp_announce = 2
+net.ipv4.conf.all.arp_ignore = 1
+net.ipv4.conf.all.arp_announce = 2
+
+2. 立即生效：
+sysctl -p 
+
+3. 验证：
+cat /proc/sys/net/ipv4/ip_forward
+期望输出：
+1

@@ -1,0 +1,24 @@
+1 永久修改hostname
+
+1.1 centOS位置：
+
+修改
+
+/etc/sysconfig/network
+
+文件中的
+
+HOSTNAME
+
+值
+
+1.2 Ubuntu
+
+echo your-new-hostname > /etc/hostname
+
+===============================================
+
+2 立即生效（对于当前对话无效）
+
+hostname your-new-hostname
+

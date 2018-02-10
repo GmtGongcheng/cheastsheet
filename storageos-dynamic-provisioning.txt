@@ -1,0 +1,73 @@
+首先，要想成功挂载nfs，必须在kubernetes集群的每个node上安装nfs-common。
+
+然后，在创建persistentvolume和persistentvolumeclaim时他们的name必须相同，而且和pod中的spec.containers.volumeMounts.name以及spec.volumes.name，spec.volumes.persistentVolumeClaim.claimName全都相同，此时才能成功挂载，启动Pod。
+
+经过以上两步，应该就能顺利解决问题了。这不知道算不算是k8s的一个bug，碰到问题在网上找了各种方案都不行，最后自己经过多次尝试，终于解决了。希望分享出来能够帮助到其他人。
+
+===============================================================
+
+使用storageOS的心得：
+
+*** StorageClass的name、pvc的name、spec.containers.volumeMounts.name、spec.volumes.name以及
+spec.volumes.persistentVolumeClaim.claimName必须全都相同（例子中皆为fast）；
+*** pvc文件中的.metadata.annotations必须指向同名的storage class。
+
+1 建立storage class：
+
+kind: StorageClass
+apiVersion: storage.k8s.io/v1beta1
+metadata:
+  name: fast
+provisioner: kubernetes.io/storageos
+parameters:
+  pool: default
+  description: Kubernetes volume
+  fsType: ext4
+  adminSecretNamespace: default
+  adminSecretName: storageos-secret
+
+2 建立 persistent volume claim：
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: fast
+  annotations:
+    volume.beta.kubernetes.io/storage-class: fast
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+
+3 建立使用之前persistent volume claim的pod：
+
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    name: redis
+    role: master
+  name: test-storageos-redis-sc-pvc
+spec:
+  containers:
+    - name: master
+      image: kubernetes/redis:v1
+      env:
+        - name: MASTER
+          value: "true"
+      ports:
+        - containerPort: 6379
+      resources:
+        limits:
+          cpu: "0.1"
+      volumeMounts:
+        - mountPath: /redis-master-data
+          name: fast
+  volumes:
+    - name: fast
+      persistentVolumeClaim:
+        claimName: fast
+ 
+

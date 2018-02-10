@@ -1,0 +1,11 @@
+1. 安装pip
+
+apt-get install -y python-pip
+
+2. 查找可用版本
+
+运行
+pip install ipython==xxx
+查询返回的版本，选取合适的，使用命令：
+pip install ipython==${VERSION}
+完成安装

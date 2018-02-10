@@ -1,0 +1,6 @@
+9160:cassandra
+1024:test
+6379:redis
+7077:spark
+2181:zookeeper
+9092:kafka

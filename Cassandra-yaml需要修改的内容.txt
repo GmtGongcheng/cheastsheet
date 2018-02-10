@@ -1,0 +1,11 @@
+1:
+cluster_name: 'Test Cluster'
+
+2: (10¸ö¿Õ¸ñ)
+          - seeds: "a.b.c.d,a.b.c.d"
+
+3:
+listen_address: a.b.c.d
+
+4:
+rpc_address: a.b.c.d

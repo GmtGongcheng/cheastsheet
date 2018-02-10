@@ -1,0 +1,15 @@
+INITIAL_CLUSTER=ali-215=http://172.31.78.215:5707,ali-216=http://172.31.78.216:5707,ali-217=http://172.31.78.217:5707
+
+docker plugin install --alias storageos storageos/plugin ADVERTISE_IP=xxx.xxx.xxx.xxx CLUSTER_ID=xxxxxxxxxxxxxxxxx
+
+docker run -d --name storageos \
+    -e HOSTNAME \
+    -e INITIAL_CLUSTER=ali-215=http://172.31.78.215:5707,ali-216=http://172.31.78.216:5707,ali-217=http://172.31.78.217:5707 \
+    --network host \
+    --pid=host \
+    --privileged \
+    --cap-add SYS_ADMIN \
+    --device /dev/fuse \
+    -v /var/lib/storageos:/var/lib/storageos:rshared \
+    -v /run/docker/plugins:/run/docker/plugins \
+    storageos/node server

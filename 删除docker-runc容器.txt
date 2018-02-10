@@ -1,0 +1,1 @@
+docker-runc delete -f $CONTAINER_ID

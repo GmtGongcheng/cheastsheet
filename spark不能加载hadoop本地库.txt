@@ -1,0 +1,15 @@
+1 原因：
+
+主要是jre目录下缺少了libhadoop.so和libsnappy.so两个文件。
+具体是，spark-shell依赖的是scala，scala依赖的是JAVA_HOME下的jdk，libhadoop.so和libsnappy.so两个文件应该放在$JAVA_HOME/jre/lib/amd64下面。
+这两个so：libhadoop.so和libsnappy.so。
+前一个so可以在HADOOP_HOME下找到，如hadoop\lib\native。
+第二个libsnappy.so需要下载一个snappy-1.1.0.tar.gz，然后./configure，make编译出来，编译成功之后在.libs文件夹下。当这两个文件准备好后再次启动spark shell不会出现这个问题。
+
+
+
+2 处理：
+
+for libhadoop.so:
+
+$ sudo ln -s $HADOOP_HOME/lib/native/libhadoop.so.1.0.0 $JAVA_HOME/jre/lib/amd64/libhadoop.so

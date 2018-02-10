@@ -1,0 +1,5 @@
+ssh -t usr@ip “cmd”
+
+具体：
+
+ssh -t usr@bridge-host “ssh root@target-host”

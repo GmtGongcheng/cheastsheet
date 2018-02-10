@@ -1,0 +1,37 @@
+方法一
+
+1 创建目标目录
+
+mkdir /home/docker
+
+2 停止docker 服务
+
+service docker stop
+
+3 同步路径
+
+rsync -aXS /var/lib/docker/  /home/docker/
+
+4 修改fstab，将存放路径加入到fstab
+
+vim /etc/fstab
+
+5 加入 
+
+/home/docker /var/lib/docker none bind 0 0
+
+6 重新挂载
+
+mount -a
+
+7 重启docker 服务
+
+service docker start
+
+##################################################################
+
+方法二
+
+修改/etc/docker/daemon.json 文件
+
+在该json文件中，添加"data-root"项，其值定义了docker镜像存放位置

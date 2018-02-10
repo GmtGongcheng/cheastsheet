@@ -1,0 +1,3 @@
+连接Kafka报错java.nio.channels.ClosedChannelExcep
+
+是由于Kafka server.properties中的advertised.host.name 属性没有配置。这个属性代表客户端访问Kafka的地址。如果没配置默认是主机名。

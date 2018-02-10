@@ -1,0 +1,1 @@
+cat ubuntu-14.04-x86_64.tar.gz  | docker import - ubuntu:14.04

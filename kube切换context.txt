@@ -1,0 +1,5 @@
+1 查询工作环境（上下文）context
+kubectl config get-context
+
+2 切换context
+kubectl config use-context ${CONTEXT}

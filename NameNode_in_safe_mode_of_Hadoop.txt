@@ -1,0 +1,3 @@
+Namenode in safe mode 解决方法 : 
+
+bin/hadoop dfsadmin -safemode leave

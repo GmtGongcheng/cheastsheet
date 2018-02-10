@@ -1,0 +1,14 @@
+1. 去掉‘export’
+sed -i 's/export //g' $DEST
+
+2. 删除注释
+sed -i '/^#/d' $DEST
+
+3. 删除空行
+sed -i '/^$/d' $DEST
+
+4. 替换from到to
+sed -i "s/$FROM/$TO/g" $DEST
+
+5. 替换存在from的行到to
+sed -i "/$FROM/ c $TO" $DEST

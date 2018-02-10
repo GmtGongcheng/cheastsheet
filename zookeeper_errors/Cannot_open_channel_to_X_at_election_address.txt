@@ -1,0 +1,8 @@
+
+How have defined the ip of the local server in each node? If you have given the public ip, then the listener would have failed to connect to the port. You must specify 0.0.0.0 for the current node
+
+server.1=0.0.0.0:2888:3888
+server.2=192.168.10.10:2888:3888
+server.3=192.168.2.1:2888:3888
+
+This change must be performed at the other nodes too.

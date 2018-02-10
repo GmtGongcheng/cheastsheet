@@ -1,0 +1,25 @@
+1 Create or modify /etc/docker/daemon.json
+[root@localhost ~]# echo '{ "insecure-registries":["10.21.4.177:5000"] }' > /etc/docker/daemon.json
+[root@localhost ~]# cat /etc/docker/daemon.json
+{ "insecure-registries":["10.10.239.222:5000"] }
+
+2 ÷ÿ‘ÿdocker
+root@localhost ~]# systemctl restart docker
+
+
+==============================================================
+
+docker run -d -p 5000:5000 --restart=always --name registry -v /var/lib/docker/repository:/var/lib/registry registry
+
+docker run -d -p 5000:5000 --restart=always --name registry -v /opt/docker/registry:/var/lib/registry registry
+
+===============================================================
+
+docker tag busybox 192.168.112.136:5000/busybox
+
+docker push 192.168.112.136:5000/busybox
+
+docker pull 192.168.112.136:5000/busybox
+
+3 ≤È—Ø
+curl http://172.31.78.217:5000/v2/_catalog

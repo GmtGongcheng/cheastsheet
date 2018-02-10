@@ -1,0 +1,32 @@
+How to
+
+Include this package in your Spark Applications using:
+spark-shell, pyspark, or spark-submit
+
+> $SPARK_HOME/bin/spark-shell --packages datastax:spark-cassandra-connector:1.6.6-s_2.10
+
+> $SPARK_HOME/bin/spark-shell --conf spark.cassandra.connection.host={your cassandra ip} --packages datastax:spark-cassandra-connector:1.6.6-s_2.10
+
+> $SPARK_HOME/bin/spark-shell --conf spark.cassandra.connection.host=10.21.4.210,10.21.4.211,10.21.4.212 --packages datastax:spark-cassandra-connector:1.6.6-s_2.10
+
+bin/spark-shell --conf spark.cassandra.connection.host=10.21.4.210,10.21.4.211,10.21.4.212 --packages datastax:spark-cassandra-connector:2.0.1-s_2.11
+
+============================================================================================
+
+无论是spark-shell还是spark-submit都需要包含--package项，即：
+
+> $SPARK_HOME/bin/spark-shell --packages datastax:spark-cassandra-connector:${SPARK_VERSION}-s_${SCALA_VERSION}
+
+如：
+
+> $SPARK_HOME/bin/spark-shell --packages datastax:spark-cassandra-connector:1.6.6-s_2.10
+
+============================================================================================
+
+spark-submit的例子：
+
+> $SPARK_HOME/bin/spark-submit --packages datastax:spark-cassandra-connector:${SPARK_VERSION}-s_${SCALA_VERSION} --master yarn --class com.your.package.class /target/jar/path
+
+如：
+
+> $SPARK_HOME/bin/spark-submit --packages datastax:spark-cassandra-connector:1.6.1-s_2.10 --master yarn --num-executors 7 --executor-memory 6g --executor-cores 2 --class com.spark.app.App ./spark-cassandra-query.jar 

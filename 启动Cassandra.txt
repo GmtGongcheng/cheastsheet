@@ -1,0 +1,13 @@
+1 启动Cassandra服务
+
+$ $CASSANDRA_HOME/bin/cassandra -f
+
+-f选项设置Cassandra工作于前台；
+如果想使用root用户启动Cassandra，添加-R选项。
+
+2 启动交互式shell
+
+$ bin/cqlsh
+或使用
+$ bin/cqlsh localhost
+连接本地Cassandra服务

@@ -1,0 +1,1 @@
+bin/mesos-agent.sh --master=`ifconfig eth1 | grep "inet addr:" | awk '{print $2}' | cut -c 6-`:5050 --work_dir=/var/lib/mesos/slave --no-systemd_enable_support --launcher=posix

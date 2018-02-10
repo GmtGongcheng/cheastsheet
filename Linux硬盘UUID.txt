@@ -1,0 +1,1 @@
+ls -l /dev/disk/by-uuid

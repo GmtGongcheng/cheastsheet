@@ -1,0 +1,48 @@
+1:
+apiVersion: v1
+kind: profile
+metadata:
+  name: profile1
+  labels:
+    profile: profile1 
+spec:
+  ingress:
+  - action: deny
+    source:
+      nets:
+      - 10.0.20.0/24
+  - action: allow
+    source:
+      selector: profile == 'profile1'
+  egress:
+  - action: allow 
+
+2
+- apiVersion: v1
+  kind: policy
+  metadata:
+    name: failsafe
+  spec:
+    selector: "all()"
+    order: 0
+    ingress:
+    - action: allow
+      protocol: tcp
+      source:
+        nets:
+        - "<your management CIDR>"
+      destination:
+        ports: [22]
+    - action: allow
+      protocol: icmp
+    egress:
+    - action: allow
+      protocol: tcp
+      destination:
+        nets:
+        - "<your etcd IP>/32"
+        ports: [<your etcd ports>]
+    - action: allow
+      protocol: udp
+      destination:
+        ports: [67]

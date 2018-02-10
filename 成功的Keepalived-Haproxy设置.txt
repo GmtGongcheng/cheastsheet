@@ -1,0 +1,160 @@
+1 haproxy设置，cat /etc/haproxy/haproxy.cfg：
+listen stats
+  bind    *:9000
+  mode    http
+  stats   enable
+  stats   hide-version
+  stats   uri       /stats
+  stats   refresh   30s
+  stats   realm     Haproxy\ Statistics
+  stats   auth      haproxy:haproxy
+
+frontend k8s-api
+    bind 0.0.0.0:443
+    mode tcp
+    option tcplog
+    tcp-request inspect-delay 5s
+    tcp-request content accept if { req.ssl_hello_type 1 }
+    default_backend k8s-api
+
+backend k8s-api
+    mode tcp
+    option tcplog
+    option tcp-check
+    balance roundrobin
+    default-server inter 10s downinter 5s rise 2 fall 2 slowstart 60s maxconn 250 maxqueue 256 weight 100
+    server k8s-api-1 192.168.0.151:6443 check
+    server k8s-api-2 192.168.0.152:6443 check
+    server k8s-api-3 192.168.0.153:6443 check
+
+frontend k8s-http-api
+    bind 0.0.0.0:80
+    mode tcp
+    option tcplog
+    default_backend k8s-http-api
+
+backend k8s-http-api
+    mode tcp
+    option tcplog
+    option tcp-check
+    balance roundrobin
+    default-server inter 10s downinter 5s rise 2 fall 2 slowstart 60s maxconn 250 maxqueue 256 weight 100
+    server k8s-http-api-1 192.168.0.151:8080 check
+    server k8s-http-api-2 192.168.0.152:8080 check
+    server k8s-http-api-3 192.168.0.153:8080 check
+
+2. Keepalived Master设置，cat /etc/keepalived/keepalived.conf：
+! Configuration File for keepalived
+
+global_defs {
+   notification_email {
+   }
+   router_id kube_api
+}
+
+vrrp_script check_haproxy {
+    # 自身状态检测
+    script "/etc/keepalived/chk.sh"
+    interval 3
+    weight 5
+}
+
+vrrp_instance haproxy-vip {
+    # 使用单播通信，默认是组播通信
+    unicast_src_ip 192.168.0.151
+    unicast_peer {
+        #192.168.0.151
+        192.168.0.152
+        192.168.0.153
+    }
+    # 初始化状态
+    state MASTER
+    #state BACKUP
+    # 虚拟ip 绑定的网卡 （这里根据你自己的实际情况选择网卡）
+    interface enp132s0f1
+    #use_vmac
+    # 此ID 要与Backup 配置一致
+    virtual_router_id 51
+    # 默认启动优先级，要比Backup 大点，但要控制量，保证自身状态检测生效
+    priority 101
+    advert_int 1
+    authentication {
+        auth_type PASS
+        auth_pass 1111
+    }
+    virtual_ipaddress {
+        # 虚拟ip 地址
+        192.168.0.100
+    }
+    track_script {
+        check_haproxy
+    }
+}
+
+3. Keepalived Backup设置，cat /etc/keepalived/keepalived.conf：
+! Configuration File for keepalived
+
+global_defs {
+   notification_email {
+   }
+   router_id kube_api
+}
+
+vrrp_script check_haproxy {
+    # 自身状态检测
+    script "/etc/keepalived/chk.sh"
+    interval 3
+    weight 5
+}
+
+vrrp_instance haproxy-vip {
+    # 使用单播通信，默认是组播通信
+    unicast_src_ip 192.168.0.152
+    unicast_peer {
+        192.168.0.151
+        #192.168.0.152
+        192.168.0.153
+    }
+    # 初始化状态
+    #state MASTER
+    state BACKUP
+    # 虚拟ip 绑定的网卡 （这里根据你自己的实际情况选择网卡）
+    interface ens9f0
+    #use_vmac
+    # 此ID 要与Backup 配置一致
+    virtual_router_id 51
+    # 默认启动优先级，要比Backup 大点，但要控制量，保证自身状态检测生效
+    priority 99
+    advert_int 1
+    authentication {
+        auth_type PASS
+        auth_pass 1111
+    }
+    virtual_ipaddress {
+        # 虚拟ip 地址
+        192.168.0.100
+    }
+    track_script {
+        check_haproxy
+    }
+}
+
+4. 检测haproxy服务的脚本，cat /etc/keepalived/chk.sh：
+#!/bin/bash
+
+SVC=$1
+
+if [ -z "$SVC" ]; then
+  SVC="haproxy"
+fi
+
+#ps aux | grep -v $0 | grep -v grep | grep "$SVC"
+#ps aux | grep -v -E "$0|grep" | grep "$SVC"
+#COUNT=$(ps aux | grep -v $0 | grep -v grep | grep "$SVC" | wc -l)
+COUNT=$(ps aux | grep -v -E "$0|grep" | grep "$SVC" | wc -l)
+#echo $COUNT
+if [ "$COUNT" -gt 0 ]; then
+  exit 0
+else
+  exit 1
+fi

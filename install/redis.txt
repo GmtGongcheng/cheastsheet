@@ -1,0 +1,34 @@
+1. 准备Redis
+
+下载：
+$ wget http://download.redis.io/releases/redis-4.0.2.tar.gz
+解压：
+$ tar xzf redis-4.0.2.tar.gz
+
+2. 安装Redis所需依赖：
+
+apt-get install -y gcc make tcl ruby gem
+gem install redis
+
+3. 编译Redis
+
+$ cd redis-4.0.2
+$ make
+
+如果make出错（jemalloc/jemalloc.h: No such file or directory），使用：
+
+$ make MALLOC=libc
+
+4. 测试
+
+$ make test
+
+5. 修改redis.conf
+
+daemonize    yes			//redis后台运行
+cluster-enabled    yes			//开启集群  把注释#去掉
+cluster-config-file  nodes_6379.conf 	//集群的配置
+cluster-node-timeout    15000		//请求超时  默认15秒，可自行设置
+appendonly    yes			//aof日志开启  有需要就开启，它会每次写操作都记录一条日志　
+
+

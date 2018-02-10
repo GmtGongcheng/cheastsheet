@@ -1,0 +1,13 @@
+1 彻底卸载VirtualBox：
+apt-get purge "^virtualbox-.*"
+
+2 离线安装virtual box：
+下载最新版的virtual box；
+使用命令安装：dpkg -I your-virtual-box.deb
+
+3 解决依赖：
+如果现实缺少依赖，安装error，使用如下命令修复：
+apt-get -f -y install
+
+4 安装vagrant：
+dpkg -i your-vagrant-file.deb
