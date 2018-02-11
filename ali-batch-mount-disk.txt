@@ -4,6 +4,7 @@ mkdir -p /data1
 mkdir -p /data2
 mkdir -p /opt
 
+echo '' >> /etc/fstab
 echo "/dev/vdb1 /data1 ext4 defaults 0 0" >> /etc/fstab
 echo "/dev/vdb2 /data2 ext4 defaults 0 0" >> /etc/fstab
 echo "/dev/vdb3 /opt ext4 defaults 0 0" >> /etc/fstab
