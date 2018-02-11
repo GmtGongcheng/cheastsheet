@@ -2,9 +2,14 @@
 
 echo your-new-hostname > /etc/hostname
 
-===============================================
 
 2 立即生效（对于当前对话无效）
 
 hostname your-new-hostname
+
+===============================================
+
+快捷：
+
+name=node-215 && echo $name > /etc/hostname && hostname $name
 
