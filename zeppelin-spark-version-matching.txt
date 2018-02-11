@@ -1,0 +1,6 @@
+需求修改zeppelin-env.sh文件，其中：
+
+SPARK_HOME根据实际情况进行设置；
+
+PYTHONPATH="${SPARK_HOME}/python:${SPARK_HOME}/python/lib/py4j-${py4j_ver}-src.zip"，
+${py4j_ver}的值需要去${SPARK_HOME}/python/lib/文件夹下进行查询。
