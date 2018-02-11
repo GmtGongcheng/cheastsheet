@@ -22,7 +22,7 @@ w是执行改动
 
 0x02
 利用命令:
-mkfs.ext4 /dev/sdb
+mkfs.ext4 /dev/vdb1
 格式化sdb为ext4格式
 
 0x03
