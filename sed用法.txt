@@ -12,3 +12,9 @@ sed -i "s/$FROM/$TO/g" $DEST
 
 5. 替换存在from的行到to
 sed -i "/$FROM/ c $TO" $DEST
+
+6. 插入
+在"exit 0"前插入"do something"
+sed -i '/^exit 0$/i\do something' $DEST
+在"exit 0"后"do meaningless
+sed -i '/^exit 0$/a\do meaningless' $DEST
