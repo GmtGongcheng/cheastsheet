@@ -1,0 +1,12 @@
+1. push 过程：
+git add .
+git commit -m "first commit"
+git remote add origin $URL
+git push -u origin master
+
+2. pull
+git pull origin master
+
+3. 撤销 git add
+撤销全部：git reset HEAD .
+撤销$FILE：git reset HEAD $FILE
