@@ -1,7 +1,0 @@
-curl --cert myuser.pem --key myuser-key.pem --cacert /path/to/ca.pem https://my-prod-cluster-apiserver:6443/api/v1/pods
-
-АэИзЈє
-
-curl --cert /etc/kubernetes/ssl/admin.pem --key /etc/kubernetes/ssl/admin-key.pem --cacert /etc/kubernetes/ssl/ca.pem https://172.31.78.217:6443/api/v1/services
-
-curl --cert /etc/kubernetes/ssl/admin.pem --key /etc/kubernetes/ssl/admin-key.pem --cacert /etc/kubernetes/ssl/ca.pem https://172.31.78.217:6443/api/v1/pods

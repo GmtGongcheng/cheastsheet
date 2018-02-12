@@ -1,0 +1,5 @@
+journalctl --since "1 min ago"
+
+journalctl -xe -u docker.service
+
+journalctl -f -u kubelet.service

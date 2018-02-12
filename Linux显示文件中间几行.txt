@@ -1,7 +1,0 @@
-显示文件file的 x 到 y 行：
-
-sed -n 'x,yp' file
-
-如显示第5到10行：
-
-sed -n '5,10p' file 

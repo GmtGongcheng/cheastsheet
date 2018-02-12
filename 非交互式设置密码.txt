@@ -1,5 +1,0 @@
-(echo 'newpasswd';sleep 1;echo 'newpasswd') | passwd
-
-¾ßÌå£º
-
-(echo '9ol.8ik,';sleep 1;echo '9ol.8ik,') | passwd root

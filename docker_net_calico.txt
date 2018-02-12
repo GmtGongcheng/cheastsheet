@@ -1,5 +1,0 @@
-calicoctl node run --node-image=quay.io/calico/node:v2.5.1
-
-docker network create --driver calico --ipam-driver calico-ipam --subnet=192.168.1.0/24 mynet
-
-docker run -it --rm --net mynet 172.31.78.217:5000/ubuntu-16.04 /bin/bash

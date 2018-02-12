@@ -1,0 +1,21 @@
+1 建立环境变量
+
+export STORAGEOS_USERNAME=storageos STORAGEOS_PASSWORD=storageos
+export STORAGEOS_HOST=<ip address>
+
+2 登录storageos
+
+storageos login
+
+3 列出volume
+
+storage volume ls
+
+4 建立volume：
+建立一个名为${VOLUME_NAME}，大小为15GB，namespace为default，filesystem为ext4的volume
+
+storageos volume create --namespace default --size 15 --fstype ext4 ${VOLUME_NAME}
+
+5 删除volume
+
+storageos volume rm ${VOLUME_NAME}

@@ -1,7 +1,0 @@
-1 ¹Ø»ú
-
-shutdown -h now
-
-2 ÖØÆô
-
-shutdown -r now

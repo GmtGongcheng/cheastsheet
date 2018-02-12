@@ -1,5 +1,0 @@
-1 导出容器：
-docker export <contianerID> > target.tar
-
-2 导入容器快照：
-cat target.tar | docker import - tag:tag

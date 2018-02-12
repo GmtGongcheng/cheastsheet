@@ -1,3 +1,0 @@
-»Á≤È’“a.txtªÚb.dat
-
-grep -E "a.txt|b.dat"
