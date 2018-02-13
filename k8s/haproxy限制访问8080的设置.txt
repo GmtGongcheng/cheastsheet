@@ -1,0 +1,52 @@
+global
+  log 127.0.0.1 local0 
+  maxconn 100
+  pidfile /run/haproxy.pid
+
+defaults
+  log	global
+  mode	http
+  option	httplog
+  option	dontlognull
+  timeout connect 5000
+  timeout client  50000
+  timeout server  50000
+  errorfile 400 /etc/haproxy/errors/400.http
+  errorfile 403 /etc/haproxy/errors/403.http
+  errorfile 408 /etc/haproxy/errors/408.http
+  errorfile 500 /etc/haproxy/errors/500.http
+  errorfile 502 /etc/haproxy/errors/502.http
+  errorfile 503 /etc/haproxy/errors/503.http
+  errorfile 504 /etc/haproxy/errors/504.http
+
+frontend k8s-http-api
+  bind 0.0.0.0:8086
+  option forwardfor 
+  
+  #acl lue_young src 123.166.213.250 123.166.202.96
+  #acl zheng_yan src 60.219.227.1 
+  acl vaild_ip src -f /etc/haproxy/whiteip.lst
+  acl hbs_ip src 1.189.209.22
+   
+  http-request allow if vaild_ip || hbs_ip
+  http-request deny
+
+  default_backend k8s-http-api
+
+backend k8s-http-api
+  balance roundrobin
+  option forwardfor
+  server k8s-http-api-1 172.31.78.215:8080 check
+  server k8s-http-api-2 172.31.78.216:8080 check
+  server k8s-http-api-3 172.31.78.217:8080 check
+  #server k8s-http-api-3 172.31.78.217:28080 check
+
+listen stats
+  bind    *:9000
+  mode    http
+  stats   enable
+  stats   hide-version
+  stats   uri       /stats
+  stats   refresh   30s
+  stats   realm     Haproxy\ Statistics
+  stats   auth      haproxy:haproxy
