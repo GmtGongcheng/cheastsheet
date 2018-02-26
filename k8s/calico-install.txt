@@ -1,0 +1,31 @@
+1. 下载calico.yaml和rbac.yaml
+
+示例链接：
+https://docs.projectcalico.org/v3.0/getting-started/kubernetes/installation/hosted/hosted
+
+2. apply rbac.yaml
+
+kubectl create -f rbac.yaml
+
+3. 修改calico.yaml
+
+ConfigMap中的data.endpoint，如：
+etcd_endpoints: "https://172.31.78.215:2379,https://172.31.78.216:2379,https://172.31.78.217:2379"  
+ConfigMap中的data.etcd_ca、data.etcd_cert、etcd_key：
+etcd_ca: "/calico-secrets/etcd-ca"
+etcd_cert: "/calico-secrets/etcd-cert"
+etcd_key: "/calico-secrets/etcd-key"
+
+Secret中的data.etcd_key、etcd-cert、etcd-ca：
+etcd-key: $(cat /etc/kubernetes/ssl/etcd-key.pem | base64 | tr -d '\n')
+etcd-cert: $(cat /etc/kubernetes/ssl/etcd.pem | base64 | tr -d '\n')
+etcd-ca: $(cat /etc/kubernetes/ssl/ca.pem | base64 | tr -d '\n')
+
+DaemonSet的spec.spec.containers.env中name为CALICO_IPV4POOL_CIDR的value：
+value: "172.30.0.0/16"
+（与设置的环境变量$CLUSTER_CIDR一致）
+
+###！！！###
+！！！不要修改ConfigMap中data.cni_network_config的值！！！
+
+4. apply calico.yaml
