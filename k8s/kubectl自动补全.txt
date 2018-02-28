@@ -1,15 +1,15 @@
-0��
-��Ҫ��װ��
+0：
+需要安装：
 bash-completion
-��һ�㶼�Ѱ�װ��
+（一般都已安装）
 
 1.
-���
+命令：
 source <(kubectl completion bash)
-�����նˡ�������Ч
+仅此终端、单次生效
 
 2.
-�Զ���Ч��
-������
+自动生效：
+将命令
 source <(kubectl completion bash)
-д��/etc/profile
+写入/etc/profile
