@@ -1,0 +1,7 @@
+pip install kube-shell
+
+输入：
+kube-shell
+使用
+
+kube-shell下，键入F10，退出

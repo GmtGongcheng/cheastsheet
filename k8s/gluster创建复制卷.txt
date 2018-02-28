@@ -1,0 +1,1 @@
+gluster volume create k8s-volume replica 3 transport tcp node-215:/data1/gfs_data node-216:/data1/gfs_data node-217:/data1/gfs_data force
