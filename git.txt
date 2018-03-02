@@ -1,6 +1,7 @@
 1. push ¹ý³Ì£º
 git add .
 git commit -m "first commit"
+(git add file -m "something")
 git remote add origin $URL
 git push -u origin master
 
