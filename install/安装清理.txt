@@ -1,6 +1,7 @@
 1. Ubuntu
 
-apt-get clean && rm -rf /var/lib/apt/lists/* && rm -rf /tmp/*
+apt-get clean && \ 
+rm -rf /var/lib/apt/lists/* && rm -rf /tmp/* /usr/share/man /usr/share/doc
 
 2. centOS
 
