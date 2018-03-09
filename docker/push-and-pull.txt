@@ -1,0 +1,1 @@
+name=172.31.78.217:5000/mysql-sql-node:v1 && docker push $name && ansible all -m shell -a "docker pull $name"

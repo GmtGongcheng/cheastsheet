@@ -1,6 +1,6 @@
 1 永久修改hostname
 
-echo $your-new-hostname > /etc/hostname
+echo $name > /etc/hostname
 
 
 2 立即生效（对于当前对话无效）
