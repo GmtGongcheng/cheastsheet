@@ -1,0 +1,11 @@
+1:
+cluster_name: {{cluster.name}}
+
+2:
+- seeds: "{{seed.ip}}"
+
+3:
+listen_address: {{pod.ip}}
+
+4:
+rpc_address: {{pod.ip}}
