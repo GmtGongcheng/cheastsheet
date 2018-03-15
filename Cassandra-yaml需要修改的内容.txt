@@ -1,11 +1,11 @@
 1:
-cluster_name: 'Test Cluster'
+cluster_name: {{cluster.name}}
 
-2: (10¸ö¿Õ¸ñ)
-          - seeds: "a.b.c.d,a.b.c.d"
+2:
+- seeds: "{{seed.ip}}"
 
 3:
-listen_address: a.b.c.d
+listen_address: {{pod.ip}}
 
 4:
-rpc_address: a.b.c.d
+rpc_address: {{pod.ip}}
