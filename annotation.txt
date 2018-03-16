@@ -1,0 +1,37 @@
+Python:
+1. 
+# This is a comment
+2. 
+""" 
+   This is a comment 
+   """
+
+Java && Scala:
+1. 
+// This is a comment
+2. 
+/**
+   This is a comment
+   **/
+
+HTML & XML:
+1.
+<!-- This is a comment -->
+2. 
+<!-- 
+   This is a comment 
+   -->
+
+BASH script:
+1. 
+# This is a comment
+
+Go:
+1.
+// This is a comment
+2.
+/* This is a comment */
+
+Yaml:
+1.
+# This is a comment
