@@ -1,0 +1,20 @@
+1. pip安装pyftpdlib
+
+pip install pyftpdlib
+
+2. 启动
+
+python -m pyftpdlib
+
+如：
+
+python -m pyftpdlib -d /opt/app
+
+3. 选项
+
+-i  IP地址（默认本机）
+-p  端口（默认：2121）
+-w  写权限（默认为只读）
+-d  指定目录（默认为当前目录）
+-u  指定用户名登录
+-p  设置登陆密码
