@@ -1,9 +1,0 @@
-from multiprocessing.dummy import Pool as ThreadPool
-
-pool = ThreadPool()
-
-pool.map(func, lst)
-
-pool.close()
-
-pool.join()
