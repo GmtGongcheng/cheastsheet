@@ -1,0 +1,26 @@
+Run python with a command like the following 
+(assuming your current directory is the top-level RAMCloud directory):
+
+1
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:obj.master PYTHONPATH=bindings/python python
+
+2
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:obj.master PYTHONPATH=bindings/python python your_srcipt.py
+
+
+==============================================================================================
+
+½Å±¾Ê¾Àý£º
+
+import ramcloud
+
+def main():
+    c = ramcloud.RAMCloud()
+    c.connect("tcp:host=10.21.4.211,port=11100")
+    c.create_table("table1")
+    tableId = c.get_table_id("table1")
+    c.write(tableId, 'object1', 'Hello from Python!')
+    value = c.read(tableId, 'object1')
+
+if __name__ == "__main__":
+    main()
