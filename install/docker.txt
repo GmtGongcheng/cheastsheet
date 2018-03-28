@@ -1,0 +1,57 @@
+#!/bin/bash
+
+if [ -x "$(command -v yum)" ]; then
+  yum makecache
+  yum install -y yum-utils \
+    device-mapper-persistent-data \
+    lvm2
+  yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo
+  yum install -y docker-ce
+  yum install -y conntrack
+elif [ -x "$(command -v apt-get)" ]; then
+  apt-get update
+  apt-get install -y \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+  apt-get update
+  apt-get install -y docker-ce
+  apt-get install -y conntrack
+else
+  echo "$(date) - $0 - [ERROR] - unknown Distributor ID."
+  exit 1
+fi
+
+iptables -P FORWARD ACCEPT
+iptables -F && iptables -X && iptables -F -t nat && iptables -X -t nat
+# mk docker-iptables.sh
+#yes | cp docker-iptables.sh /usr/local/bin
+echo -e '#!/bin/bash' > /usr/local/bin/docker-iptables.sh
+echo -e 'sleep 60 && /sbin/iptables -P FORWARD ACCEPT' >> /usr/local/bin/docker-iptables.sh
+chmod +x /usr/local/bin/docker-iptables.sh
+# mk docker-iptables.service
+#cp docker-iptables.service /etc/systemd/system
+echo -e '[Unit]' > /etc/systemd/system/docker-iptables.service
+echo -e 'Description=Make Iptables Rules for Docker' >> /etc/systemd/system/docker-iptables.service
+echo -e '' >> /etc/systemd/system/docker-iptables.service
+echo -e '[Service]' >> /etc/systemd/system/docker-iptables.service
+echo -e 'Type=oneshot' >> /etc/systemd/system/docker-iptables.service
+echo -e 'ExecStart=/usr/local/bin/docker-iptables.sh' >> /etc/systemd/system/docker-iptables.service
+echo -e '' >> /etc/systemd/system/docker-iptables.service
+echo -e '[Install]' >> /etc/systemd/system/docker-iptables.service
+echo -e 'WantedBy=multi-user.target' >> /etc/systemd/system/docker-iptables.service
+
+systemctl daemon-reload
+systemctl enable docker
+systemctl start docker
+
+systemctl enable docker-iptables.service
+systemctl start docker-iptables.service
