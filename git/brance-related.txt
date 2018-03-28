@@ -12,3 +12,6 @@ git branch
 
 5.删除分支
 git branch -d ${branchname}
+
+6.分支重命名
+git branch -m ${old.branchname} ${new.branchname}
