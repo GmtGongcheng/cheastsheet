@@ -15,3 +15,6 @@ git branch -d ${branchname}
 
 6.分支重命名
 git branch -m ${old.branchname} ${new.branchname}
+
+7.删除远程分支
+git push :old_branchname
