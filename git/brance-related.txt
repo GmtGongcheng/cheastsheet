@@ -1,0 +1,14 @@
+1.创建分支
+git branch ${branchname}
+
+2.切换分支
+git checkout ${branchname}
+
+3.合并分支
+git merge
+
+4.列出分支
+git branch
+
+5.删除分支
+git branch -d ${branchname}
