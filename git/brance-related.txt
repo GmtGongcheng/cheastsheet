@@ -17,4 +17,4 @@ git branch -d ${branchname}
 git branch -m ${old.branchname} ${new.branchname}
 
 7.É¾³ýÔ¶³Ì·ÖÖ§
-git push :old_branchname
+git push origin :old_branchname
