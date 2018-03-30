@@ -1,0 +1,11 @@
+[Unit]
+Description=Oneshot App
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh \
+          -c \
+          ""
+
+[Install]
+WantedBy=multi-user.target
