@@ -1,0 +1,101 @@
+/**
+ * Test Spark + Kafka,
+ * which are deployed on the same single node
+ */
+package com.spark.app
+
+import java.util.Properties
+import scopt.OptionParser
+
+case class Config(
+	RUN: String = "",
+	KEYSPACE: String = "test0x03",
+	NAMESPACE: String = "arc",
+	DATA: String = "data",
+	TERM: String = "",
+	AREA: String = "",
+	DATE: String = "",
+	USER: String = "",
+	CASSANDRA_CLUSTER: String = "10.21.4.210,10.21.4.211,10.21.4.212",
+	DATAITEM: String = "10139C10",
+	DATES: Seq[String] = Seq("2017-03-01","2017-03-02","2017-03-03","2017-03-04","2017-03-05"),
+	PARTS_OF_AREA: Int = 14,
+	ZKQUORUM: String = "127.0.0.1",
+	GROUP: String = "my-consumer-group",
+	TOPICS: String = "test",
+	ZKPORT: String = "2181",
+	NUM_THREADS: Int = 2,
+	METHOD: String = "wordCount"
+)
+
+object App{
+    def main(args: Array[String]){
+
+		val parser = new OptionParser[Config]("scopt"){
+			head("scopt","3.x")
+
+			opt[String]("run").action((x,c) => c.copy(RUN = x)).
+				text("Do nothing; but help to run.")
+			opt[String]('k',"keyspace").action((x,c) => c.copy(KEYSPACE = x)).
+				text("the KEYSPACE of Cassandra to use")
+			opt[String]('n',"namespace").action((x,c) => c.copy(NAMESPACE = x)).
+				text("the Namespace of data to use")
+			opt[String]('e',"details").action((x,c) => c.copy(DATA = x)).
+				text("the details of data to use")
+			opt[String]('t',"term").action((x,c) => c.copy(TERM = x)).
+				text("the termAddr of data to query")
+			opt[String]('a',"area").action((x,c) => c.copy(AREA = x)).
+				text("the areaId of data to query")
+			opt[String]('d',"date").action((x,c) => c.copy(DATE = x)).
+				text("the date of data to query")
+			opt[String]('u',"user").action((x,c) => c.copy(USER = x)).
+				text("the mpNum of data to query")
+			opt[String]('c',"cassandra_cluster").action((x,c) => c.copy(CASSANDRA_CLUSTER = x)).
+				text("the mpNum of data to query")
+			opt[String]("dataitem").action((x,c) => c.copy(DATAITEM = x)).
+				text("the dataitem of data to query")
+			opt[Seq[String]]("dates").action((x,c) => c.copy(DATES = x)).
+				text("an optrion for testing")
+			opt[Int]("parts").action((x,c) => c.copy(PARTS_OF_AREA = x)).
+				text("the parts of area to be dividedi into")
+			opt[String]("zk-quorum").action((x,c) => c.copy(ZKQUORUM = x)).
+				text("Todo")
+			opt[String]("zk-port").action((x,c) => c.copy(ZKPORT = x)).
+				text("Todo")
+			opt[String]("group").action((x,c) => c.copy(GROUP = x)).
+				text("Todo")
+			opt[String]("topics").action((x,c) => c.copy(TOPICS = x)).
+				text("Todo")
+			opt[Int]("num-threads").action((x,c) => c.copy(NUM_THREADS = x)).
+				text("Todo")
+			opt[String]("method").action((x,c) => c.copy(METHOD = x)).
+				text("Todo")
+
+			help("help").text("prints this usage text")
+
+			/**
+			arg[File]("<file>...").unbonded().optional().action((x,c) => 
+				c.copy(files = c.files :+ x)).text("optional unbounded args")
+
+			note("some notes.".newline)
+
+			cmd("update").action((_,c) => c.copy(mode = "update")).
+				text("update is a command.").
+				children(
+					opt[Unit]("non-keepalive").abbr("nk").action((_,c) => 
+						c.copy(keepalive = false)).text("disable keepalive"),
+					checkConfig(c => 
+						if (c.keepalive) failure("xyz cannot keep alive")
+						else success)
+				)**/
+		}
+
+		parser.parse(args,Config()) match {
+			case Some(config) => 
+				run(config)		
+
+			case None =>
+				sys.exit(1)
+		}
+    }
+}
