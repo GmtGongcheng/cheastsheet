@@ -46,6 +46,7 @@ WantedBy=multi-user.target
 EOF
 # mk /etc/docker/daemon.json
 mkdir -p /data/docker
+mkdir -p /etc/docker
 cat > /etc/docker/daemon.json << EOF
 {
   "data-root": "/data/docker",
