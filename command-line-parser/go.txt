@@ -3,18 +3,16 @@ package main
 import (
     "flag"
     "fmt"
-    "strings"
     "log"
 )
 
-var n = flag.Bool("n",false,"omit trailing newline")
-var sep = flag.String("s"," ","separator")
+var n = flag.Int("n",0,"numbers")
+var s = flag.String("s"," ","separator")
+var b = flag.Bool("b",false,"omit trailing newline")
 
 func main() {
     flag.Parse()
-    fmt.Print(strings.Join(flag.Args(),*sep))
-    if ! *n {
-        fmt.Println()
-    }
-    log.Println("hi")
+    fmt.Println(*s)
+    fmt.Println(*n)
+    fmt.Println(*b)
 }
