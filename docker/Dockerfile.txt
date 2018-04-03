@@ -1,0 +1,8 @@
+1. for Ubuntu only，去掉debconf交互式
+ENV DEBIAN_FRONTEND noninteractive
+
+2. 修改时区
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+3. 非交互式设置root账户的密码
+RUN (echo '9ol.8ik,';sleep 1;echo '9ol.8ik,') | passwd root
