@@ -1,0 +1,28 @@
+package main
+
+import(
+    "log"
+)
+
+func main() {
+    const n = 10
+    array := [n]int{}
+    for i,_ := range array {
+        array[i] = i
+    }
+    done := make(chan struct{})
+    for _,j := range array {
+        go print(j,done)
+    }
+    for range array {
+        <- done
+    }
+}
+
+
+func print(n int,done chan struct{}) {
+    for i := 0; i <= 10+n; i++ {
+        log.Printf("%d: %d",n,i)
+    }
+    done <- struct{}{}
+}
