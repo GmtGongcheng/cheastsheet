@@ -4,8 +4,20 @@ git branch ${branchname}
 2.切换分支
 git checkout ${branchname}
 
-3.合并分支
-git merge
+3.合并分支到master
+3.1 假如工作在dev分支上，提交
+git add .
+git commit -m "dev"
+git push origin dev
+3.2 切换到master分支，同步
+git checkout master
+git pull origin master
+3.3 合并
+git merge dev
+查看
+git status
+提交
+git push origin master 
 
 4.列出分支
 git branch
