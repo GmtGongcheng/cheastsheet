@@ -1,4 +1,4 @@
-1. 去掉‘export’
+﻿1. 去掉‘export’
 sed -i 's/export //g' $DEST
 
 2. 删除注释
@@ -18,3 +18,6 @@ sed -i "/$FROM/ c $TO" $DEST
 sed -i '/^exit 0$/i\do something' $DEST
 在"exit 0"后"do meaningless
 sed -i '/^exit 0$/a\do meaningless' $DEST
+
+7. 处理“\”作为分隔符的错误，更换分隔符，比如%
+sed -i s%"$FROM"%"$TO"%g $DEST
