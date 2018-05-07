@@ -1,18 +1,14 @@
 #!/bin/bash
 
-DistributorID=$(lsb_release -i | awk -F ' ' '{print $3}' | tail -n 1)
-
-echo $DistributorID
-MATCHED="YES"
-
-if [ "CentOS" == "$DistributorID" ]; then
+if [ -x "$(command -v yum)" ]; then
   cd /etc/yum.repos.d && \
   if [ -f CentOS-Base.repo ]; then mv -f CentOS-Base.repo CentOS-Base.repo.bak; fi && \
   wget -O CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo && \
   yum clean all && \
   yum makecache && \
   cd -
-elif [ "Ubuntu" == "$DistributorID" ]; then
+fi
+if [ -x "$(command -v apt-get)" ]; then
   Codename=$( (lsb_release -a) | awk '{print $2}' | tail -n 1 )
   echo "\
     deb http://mirrors.aliyun.com/ubuntu/ $Codename main multiverse restricted universe
@@ -26,7 +22,4 @@ elif [ "Ubuntu" == "$DistributorID" ]; then
     deb-src http://mirrors.aliyun.com/ubuntu/ $Codename-security main multiverse restricted universe
     deb-src http://mirrors.aliyun.com/ubuntu/ $Codename-updates main multiverse restricted universe " > /etc/apt/sources.list
   apt-get update
-else
-  echo "$(date) - $0 - [ERROR] - unknown Distributor ID."
-  exit 1
 fi
