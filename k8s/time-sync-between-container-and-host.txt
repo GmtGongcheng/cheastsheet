@@ -1,0 +1,8 @@
+    volumeMounts:
+      - name: host-time
+        mountPath: /etc/localtime
+        readOnly: true
+  volumes:
+    - name: host-time
+      hostPath:
+        path: /etc/localtime
