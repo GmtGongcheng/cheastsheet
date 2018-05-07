@@ -1,17 +1,14 @@
-1. ubuntu
-
-
-
 #!/bin/bash
 
-apt-get install -y software-properties-common
-apt-add-repository -y ppa:ansible/ansible
-apt-get update
-apt-get install -y ansible
+if [ -x "$(command -v apt-get)" ]; then
+  apt-get install -y software-properties-common
+  apt-add-repository -y ppa:ansible/ansible
+  apt-get update
+  apt-get install -y ansible
+fi
 
-
-
-2. Centos
-
-
+if [ -x "$(command -v yum)" ]; then
+  yum makecache
+  
 yum install -y ansible
+fi
