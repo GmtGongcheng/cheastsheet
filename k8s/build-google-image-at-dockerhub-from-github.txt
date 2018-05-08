@@ -1,0 +1,56 @@
+0 
+将go-image-mk.sh脚本存至/usr/local/bin；
+
+1 
+在GitHub上建立一个名为{Name}的repository，
+如tf-model-server-cpu-image；
+
+2 
+在机器上建立一个同名的文件夹，
+如tf-model-server-cpu-image；
+
+3 
+cd至文件夹，并运行go-image-mk.sh脚本，
+以Google镜像的全写作为输入变量，如
+go-image-mk.sh gcr.io/kubeflow-images-public/tf-model-server-cpu:v20180327-995786ec
+至此，在GitHub名为{Name}的repository中建立了两个分支，名称分别为：
+master和镜像的tag；
+
+4
+进入dockerhub，执行"Create Automated Build" 
+
+5 go-image-mk.sh脚本：
+#!/bin/bash
+
+GOOGLE_IMAGE=$1
+
+if [ -z "$GOOGLE_IMAGE" ]; then
+  echo "$(date) - [ERROR] - no image info provided."
+  sleep 2
+  exit 1
+fi
+
+git init
+PWD=$(pwd)
+REPO=${PWD##*/}
+GITHUB_URL="git@github.com:humstarman/${REPO}.git"
+git remote add origin $GITHUB_URL
+
+cat > $(pwd)/README.md << EOF
+<div>
+for kubeflow v0.1.2
+</div>
+EOF
+cat > $(pwd)/Dockerfile << EOF
+FROM ${GOOGLE_IMAGE}
+EOF
+
+git add .
+git commit -m "init"
+git push origin master
+
+TAG="$(cat Dockerfile | awk -F ':' '{print $2}')"
+echo $TAG
+git branch $TAG
+git checkout $TAG
+git push origin $TAG

@@ -9,5 +9,6 @@ fi
 
 if [ -x "$(command -v yum)" ]; then
   yum makecache
-  yum install -y ansible
+  
+yum install -y ansible
 fi
