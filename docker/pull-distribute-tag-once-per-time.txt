@@ -1,11 +1,4 @@
-#!/bin/sh
 
-IMAGES=$1
-if [ -z "$IMAGES" ]; then
-  echo "$(date) - [ERROR] - no image to pull!"
-  sleep 3
-  exit 1
-fi
 0 作用
 待拉取镜像作为脚本的输入变量。
 脚本用于：
@@ -14,7 +7,15 @@ fi
 控制集群中节点从local registry中拉取镜像；
 还原镜像名。
 
-1 pdt-once-per-time.sh脚本内容：
+1 pull-image.sh脚本内容：
+#!/bin/sh
+
+IMAGES=$1
+if [ -z "$IMAGES" ]; then
+  echo "$(date) - [ERROR] - no image to pull!"
+  sleep 3
+  exit 1
+fi
 if [ ! -x "$(command -v docker)" ]; then
   echo "$(date) - [ERROR] - no docker installed!"
   sleep 3
@@ -35,7 +36,7 @@ function pull_distribute_tag() {
   [ -z "$TAG" ] && TAG="latest"
   #echo $NAME
   #echo $TAG
-  if [[ -n "$(docker images | grep $NAME)"  && -n "$(docker images | grep $TAG)" ]]; then
+  if [ -n "$(docker images | grep $NAME | grep $TAG)" ]; then
     echo "$(date) - [WARN] - $IMAGE already existed."
   else
     docker pull $IMAGE 
