@@ -1,0 +1,31 @@
+0 目的
+通过不同的方式（hostPath、configMap等），
+将配置文件挂载到pod的指定位置。
+
+1 configmap
+将名为prometheus-config的configmap中.data的prometheus.yml，
+挂载为pod中的/etc/prometheus/prometheus.yml文件
+
+          volumeMounts:
+            - name: prometheus-config 
+              mountPath: /etc/prometheus/prometheus.yml 
+              subPath: prometheus.yml
+              readOnly: true
+      volumes:
+        - name: prometheus-config 
+          configMap:
+            name: prometheus-config
+
+2 hostpath
+将宿主机中/tmp/prometheus.yml文件，
+挂在为pod中的/etc/prometheus/prometheus.yml文件
+
+          volumeMounts:
+            - name: host-path
+              mountPath: /etc/prometheus/prometheus.yml 
+              subPath: prometheus.yml
+              readOnly: true
+      volumes:
+        - name: host-path
+          hostPath:
+            path: /tmp
