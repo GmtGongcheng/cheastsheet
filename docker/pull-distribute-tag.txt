@@ -1,0 +1,62 @@
+0 用途：
+在一台机器上拉取镜像；
+将镜像的repository tag成local registry，并推送；
+使用ansible在集群所有节点拉取镜像；
+将各节点上的镜像名称还原。
+
+1 pull-distribute-tag.sh脚本内容：
+#!/bin/sh
+
+if [ ! -x "$(command -v docker)" ]; then
+  echo "$(date) - [ERROR] - no docker installed!"
+  sleep 3
+  exit 1
+fi
+if [ ! -x "$(command -v ansible)" ]; then
+  echo "$(date) - [ERROR] - no ansible installed!"
+  sleep 3
+  exit 1
+fi
+
+LOCAL_REPO="172.31.78.217:5000"
+
+IMAGES="kubespark/spark-driver:v2.2.0-kubernetes-0.5.0 \
+kubespark/spark-executor:v2.2.0-kubernetes-0.5.0 \
+kubespark/spark-init:v2.2.0-kubernetes-0.5.0 \
+kubespark/spark-resource-staging-server:v2.2.0-kubernetes-0.5.0 \
+kubespark/spark-driver-py:v2.2.0-kubernetes-0.5.0 \
+kubespark/spark-executor-py:v2.2.0-kubernetes-0.5.0 \
+kubespark/spark-driver-r:v2.2.0-kubernetes-0.5.0 \
+kubespark/spark-executor-r:v2.2.0-kubernetes-0.5.0 \
+kubespark/spark-resource-staging-server:v2.2.0-kubernetes-0.5.0 \
+kubespark/spark-shuffle:v2.2.0-kubernetes-0.5.0"
+
+function pull_distribute_tag() {
+  IMAGE=$1
+  NAME=${IMAGE%%:*}
+  TAG=${IMAGE##*:}
+  [ -z "$TAG" ] && TAG="latest"
+  #echo $NAME
+  #echo $TAG
+  if [[ -n "$(docker images | grep $NAME)"  && -n "$(docker images | grep $TAG)" ]]; then
+    echo "$(date) - [WARN] - $IMAGE already existed."
+  else
+    docker pull $IMAGE 
+    echo "$(date) - [INFO] - image $IMAGE pulled."
+  fi
+  NAME=${IMAGE##*/}
+  docker tag $IMAGE ${LOCAL_REPO}/$NAME
+  echo "$(date) - [INFO] - rename $IMAGE as ${LOCAL_REPO}/$NAME."
+  docker push ${LOCAL_REPO}/$NAME
+  echo "$(date) - [INFO] - image ${LOCAL_REPO}/$NAME pushed."
+  ansible all -m shell -a "docker pull ${LOCAL_REPO}/$NAME"
+  echo "$(date) - [INFO] - image ${LOCAL_REPO}/$NAME pulled at all nodes."
+  ansible all -m shell -a "docker tag ${LOCAL_REPO}/$NAME $IMAGE"
+  echo "$(date) - [INFO] - rename image ${LOCAL_REPO}/$NAME as ${IMAGE} at all nodes."
+  ansible all -m shell -a "docker rmi ${LOCAL_REPO}/$NAME"
+  echo "$(date) - [INFO] - delete temporary image ${LOCAL_REPO}/$NAME at all nodes."
+}
+
+for IMAGE in $IMAGES; do
+  pull_distribute_tag $IMAGE
+done
