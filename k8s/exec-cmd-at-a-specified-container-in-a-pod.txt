@@ -1,0 +1,3 @@
+使用-c或--container指定容器名称，如
+
+kubectl exec -it prom-all-in-one-7698fd9cf5-kpspf -c=prom-server -- /bin/bash
