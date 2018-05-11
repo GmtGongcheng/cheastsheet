@@ -1,0 +1,11 @@
+1 
+在每个.sepc.spec.containers下加入：
+          volumeMounts:
+            - name: cached 
+              mountPath: /cached
+
+2
+在.spec.spec下加入：
+      volumes:
+        - name: cached 
+          emptyDir: {}
