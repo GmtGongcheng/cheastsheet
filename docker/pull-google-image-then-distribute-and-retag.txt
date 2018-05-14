@@ -42,21 +42,20 @@ if [ -z "$IMAGES" ]; then
 fi
 
 function pull_distribute_tag() {
-  IMAGE=$1
-  NAME=${IMAGE%%:*}
-  TAG=${IMAGE##*:}
-  [ -z "$TAG" ] && TAG="latest"
+  NAME=${IMAGE##*/}
   #echo $NAME
-  #echo $TAG
-  if [[ -n "$(docker images | grep $NAME)"  && -n "$(docker images | grep $TAG)" ]]; then
+  PULLABLE=${DOCKER_HUB}/$NAME 
+  REPOSITORY=${PULLABLE%%:*}
+  TAG=${PULLABLE##*:}
+  [ -z "$TAG" ] && TAG="latest"
+  if [ -n "$(docker images | grep $REPOSITORY | grep $TAG)" ]; then
     echo "$(date) - [WARN] - $IMAGE already existed."
   else
-    docker pull $IMAGE 
-    echo "$(date) - [INFO] - image $IMAGE pulled."
+    docker pull $PULLABLE
+    echo "$(date) - [INFO] - image $PULLABLE pulled."
   fi
-  NAME=${IMAGE##*/}
-  docker tag $IMAGE ${LOCAL_REPO}/$NAME
-  echo "$(date) - [INFO] - rename $IMAGE as ${LOCAL_REPO}/$NAME."
+  docker tag $PULLABLE ${LOCAL_REPO}/$NAME
+  echo "$(date) - [INFO] - rename $PULLABLE as ${LOCAL_REPO}/$NAME."
   docker push ${LOCAL_REPO}/$NAME
   echo "$(date) - [INFO] - image ${LOCAL_REPO}/$NAME pushed."
   ansible all -m shell -a "docker pull ${LOCAL_REPO}/$NAME"
