@@ -1,21 +1,14 @@
+0 用途：
+在一台机器上拉取镜像；
+将镜像的repository tag成local registry，并推送；
+使用ansible在集群所有节点拉取镜像；
+将各节点上的镜像名称还原。
 
-0 作用
-待拉取镜像作为脚本的输入变量。
-脚本用于：
-拉取镜像；
-将镜像推送到local registry；
-控制集群中节点从local registry中拉取镜像；
-还原镜像名。
-
-1 pull-image.sh脚本内容：
+1 pull-distribute-tag.sh脚本内容：
 #!/bin/sh
 
-IMAGES=$1
-if [ -z "$IMAGES" ]; then
-  echo "$(date) - [ERROR] - no image to pull!"
-  sleep 3
-  exit 1
-fi
+set -e
+
 if [ ! -x "$(command -v docker)" ]; then
   echo "$(date) - [ERROR] - no docker installed!"
   sleep 3
@@ -28,6 +21,25 @@ if [ ! -x "$(command -v ansible)" ]; then
 fi
 
 LOCAL_REPO="172.31.78.217:5000"
+DOCKER_HUB="lowyard"
+
+GO_IMAGES="$*"
+if [ -z "$GO_IMAGES" ]; then
+  GO_IMAGES="k8s.gcr.io/hyperkube:v1.0.7 \
+  gcr.io/kubeflow-images-public/tf-model-server-http-proxy:v20180327-995786ec \
+  gcr.io/kubeflow-images-public/tf-model-server-cpu:v20180327-995786ec \
+  gcr.io/kubeflow-images-public/tf-model-server-gpu:v20180327-995786ec \
+  gcr.io/kubeflow/tf-benchmarks-cpu:v20171202-bdab599-dirty-284af3 \
+  gcr.io/kubeflow/tf-benchmarks-gpu:v20171202-bdab599-dirty-284af3 \
+  gcr.io/cloud-solutions-group/esp-sample-app:1.0.0 \
+  gcr.io/google_containers/spartakus-amd64:v1.0.0 \
+  gcr.io/kubeflow-images-public/envoy:v20180309-0fb4886b463698702b6a08955045731903a18738 \
+  gcr.io/kubeflow-images-public/tf_operator:v20180329-a7511ff \
+  gcr.io/kubeflow/jupyterhub-k8s:1.0.1 \
+  gcr.io/kubeflow-images-public/tf_operator:v20180226-403 \
+  gcr.io/kubeflow-images-public/tensorflow-1.4.1-notebook-cpu:v20180419-0ad94c4e \
+  gcr.io/kubeflow/tensorflow-notebook-cpu"
+fi
 
 function pull_distribute_tag() {
   IMAGE=$1
@@ -36,7 +48,7 @@ function pull_distribute_tag() {
   [ -z "$TAG" ] && TAG="latest"
   #echo $NAME
   #echo $TAG
-  if [ -n "$(docker images | grep $NAME | grep $TAG)" ]; then
+  if [[ -n "$(docker images | grep $NAME)"  && -n "$(docker images | grep $TAG)" ]]; then
     echo "$(date) - [WARN] - $IMAGE already existed."
   else
     docker pull $IMAGE 

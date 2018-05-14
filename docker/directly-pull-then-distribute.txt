@@ -1,12 +1,20 @@
-0 用途：
-在一台机器上拉取镜像；
-将镜像的repository tag成local registry，并推送；
-使用ansible在集群所有节点拉取镜像；
-将各节点上的镜像名称还原。
+0 作用
+待拉取镜像作为脚本的输入变量。
+脚本用于：
+拉取镜像；
+将镜像推送到local registry；
+控制集群中节点从local registry中拉取镜像；
+还原镜像名。
 
-1 pull-distribute-tag.sh脚本内容：
+1 pull-image.sh脚本内容：
 #!/bin/sh
 
+IMAGES="$@"
+if [ -z "$IMAGES" ]; then
+  echo "$(date) - [ERROR] - no image to pull!"
+  sleep 3
+  exit 1
+fi
 if [ ! -x "$(command -v docker)" ]; then
   echo "$(date) - [ERROR] - no docker installed!"
   sleep 3
@@ -20,17 +28,6 @@ fi
 
 LOCAL_REPO="172.31.78.217:5000"
 
-IMAGES="kubespark/spark-driver:v2.2.0-kubernetes-0.5.0 \
-kubespark/spark-executor:v2.2.0-kubernetes-0.5.0 \
-kubespark/spark-init:v2.2.0-kubernetes-0.5.0 \
-kubespark/spark-resource-staging-server:v2.2.0-kubernetes-0.5.0 \
-kubespark/spark-driver-py:v2.2.0-kubernetes-0.5.0 \
-kubespark/spark-executor-py:v2.2.0-kubernetes-0.5.0 \
-kubespark/spark-driver-r:v2.2.0-kubernetes-0.5.0 \
-kubespark/spark-executor-r:v2.2.0-kubernetes-0.5.0 \
-kubespark/spark-resource-staging-server:v2.2.0-kubernetes-0.5.0 \
-kubespark/spark-shuffle:v2.2.0-kubernetes-0.5.0"
-
 function pull_distribute_tag() {
   IMAGE=$1
   NAME=${IMAGE%%:*}
@@ -38,7 +35,7 @@ function pull_distribute_tag() {
   [ -z "$TAG" ] && TAG="latest"
   #echo $NAME
   #echo $TAG
-  if [[ -n "$(docker images | grep $NAME)"  && -n "$(docker images | grep $TAG)" ]]; then
+  if [ -n "$(docker images | grep $NAME | grep $TAG)" ]; then
     echo "$(date) - [WARN] - $IMAGE already existed."
   else
     docker pull $IMAGE 
