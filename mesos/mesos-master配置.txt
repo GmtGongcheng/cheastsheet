@@ -1,0 +1,54 @@
+MASTER:
+
+1 zk
+
+vi /etc/mesos/zk
+添加
+zk://10.21.4.241:2181,10.21.4.242:2181,10.21.4.243:2181/mesos
+
+2 quorum
+
+echo '2' | tee /etc/mesos-master/quorum
+
+3 配置ip和hostname的识别
+
+export IP=`ifconfig eth1 | grep "inet addr:" | awk '{print $2}' | cut -c 6-`
+
+echo $IP | tee /etc/mesos-master/ip
+
+cp /etc/mesos-master/ip /etc/mesos-master/hostname 
+
+4 配置启动规则
+
+stop mesos-salve
+
+echo manual | tee /etc/init/mesos-slave.override
+
+stop mesos-agent
+
+echo manual | tee /etc/init/mesos-agent.override
+
+============================================================================================
+
+
+AGENT:
+
+1 配置slave节点服务启动规则
+
+sudo stop zookeeper
+
+echo manual | sudo tee /etc/init/zookeeper.override
+
+echo manual | sudo tee /etc/init/mesos-master.override
+
+sudo stop mesos-master
+
+2 配置slave节点的识别ip和hostname
+
+export IP=`ifconfig eth1 | grep "inet addr:" | awk '{print $2}' | cut -c 6-`
+
+echo $IP | tee /etc/mesos-salve/ip
+echo $IP | tee /etc/mesos-agent/ip
+cp /etc/mesos-slave/ip /etc/mesos-slave/hostname
+cp /etc/mesos-agent/ip /etc/mesos-agent/hostname
+

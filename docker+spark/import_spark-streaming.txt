@@ -1,0 +1,12 @@
+# regular imports
+import org.apache.spark.SparkConf
+
+# imports specified Spark Streaming
+import org.apache.spark.streaming.StreamingContext
+import org.apache.spark.streaming.StreamingContext._
+import org.apache.spark.streaming.dstream.DStream
+import org.apache.spark.streaming.Duration
+import org.apache.spark.streaming.Seconds
+
+# key/value DStream transformations like reduceByKey() are made available in Scala by
+import StreamingContext._

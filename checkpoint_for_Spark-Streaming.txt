@@ -1,4 +1,0 @@
-ssc.checkpoint("hdfs://your/hdfs/path")
-
-输入是一个文件夹，如
-hdfs://localhost:9000/user/root/.checkpoint

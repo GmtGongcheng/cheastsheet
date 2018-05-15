@@ -1,8 +1,0 @@
-1 YARN:
-
-bin/spark-submit --master yarn-client --num-executors 4 --driver-memory 6g --executor-memory 6g --driver-cores 4 --executor-cores 4 --class com.spark.app.App ./spark-example-assembly-0.0.1.jar -a 1
-
-bin/spark-submit --master yarn --deploy-mode client --num-executors 4 --driver-memory 6G --executor-memory 6G --driver-cores 4 --executor-cores 4 --class com.spark.app.App ./spark-example-assembly-0.0.1.jar -a 1
-
-2 MESOS:
-./bin/spark-submit --class com.spark.App --master mesos://10.21.4.230:7077 --deploy-mode cluster --supervise --executor-memory 40G --total-executor-cores 100 --conf "spark.shuffle.service.enabled=true" hdfs://ns1/user/root/jarsspark-mesos-assembly-0.1.1.jar
