@@ -1,0 +1,3 @@
+Git设置当前分支为默认push分支：
+
+git config --global push.default "current"
