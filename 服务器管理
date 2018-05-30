@@ -1,0 +1,6 @@
+192.168.100.154 my.dash.me
+192.168.100.154 my.nginx.me
+192.168.100.154 my.prom-core.me
+192.168.100.154 my.prom-gra.me
+192.168.100.154 my.kubeflow.me
+192.168.100.154 my.gitlab.me
