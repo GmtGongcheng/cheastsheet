@@ -1,3 +1,0 @@
-在编译时，加上变量 -encoding utf-8，例如：
-
-javac -encoding utf-8 myscript.java

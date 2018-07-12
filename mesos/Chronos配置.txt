@@ -1,3 +1,0 @@
-1 mesos native lib
-
-ln -s /usr/local/lib/libmesos-1.2.0.so /usr/lib/libmesos.so

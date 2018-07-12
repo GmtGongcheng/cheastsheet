@@ -1,3 +1,0 @@
-vagrant plugin install vagrant-vbguest
-
-vagrant plugin uninstall vagrant-vbguest

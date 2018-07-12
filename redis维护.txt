@@ -1,9 +1,0 @@
-查询集群状态：
-
-$REDIS_HOME/src/redis-cli -c -p $REDIS_PORT -h $THIS_IP cluster nodes
-
-如果存在一个fail的节点，可以
-
-$REDIS_HOME/src/redis-cli -c -p $REDIS_PORT -h $THIS_IP cluster forget $NODE_ID
-
-将其从集群删除

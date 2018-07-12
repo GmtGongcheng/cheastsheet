@@ -1,5 +1,0 @@
-类型 chan<- int 表示一個只发送int的channel，只能发送不能接收；
-
-类型 <-chan int 表示一個只接收int的channel，只能接收不能发送。
-
-箭头 <- 和关键字chan的相对位置表明了channel的方向。

@@ -1,3 +1,0 @@
-bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning
-
-./bin/kafka-topics.sh -zookeeper 192.168.1.21:2181 -create -topic test1x00 -replication-factor 2 -partitions 6

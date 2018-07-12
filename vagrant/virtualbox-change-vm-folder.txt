@@ -1,1 +1,0 @@
-VBoxManage setproperty machinefolder $DEST

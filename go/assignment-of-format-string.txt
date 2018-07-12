@@ -1,3 +1,0 @@
-i := 10
-
-s := fmt.Sprintf("%d is okay",i)
