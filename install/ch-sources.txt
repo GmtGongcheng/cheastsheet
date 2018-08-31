@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #!/bin/bash
 
 if [ -x "$(command -v yum)" ]; then
@@ -23,3 +24,30 @@ if [ -x "$(command -v apt-get)" ]; then
     deb-src http://mirrors.aliyun.com/ubuntu/ $Codename-updates main multiverse restricted universe " > /etc/apt/sources.list
   apt-get update
 fi
+=======
+#!/bin/bash
+
+if [ -x "$(command -v yum)" ]; then
+  cd /etc/yum.repos.d && \
+  if [ -f CentOS-Base.repo ]; then mv -f CentOS-Base.repo CentOS-Base.repo.bak; fi && \
+  wget -O CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo && \
+  yum clean all && \
+  yum makecache && \
+  cd -
+fi
+if [ -x "$(command -v apt-get)" ]; then
+  Codename=$( (lsb_release -a) | awk '{print $2}' | tail -n 1 )
+  echo "\
+    deb http://mirrors.aliyun.com/ubuntu/ $Codename main multiverse restricted universe
+    deb http://mirrors.aliyun.com/ubuntu/ $Codename-backports main multiverse restricted universe
+    deb http://mirrors.aliyun.com/ubuntu/ $Codename-proposed main multiverse restricted universe
+    deb http://mirrors.aliyun.com/ubuntu/ $Codename-security main multiverse restricted universe
+    deb http://mirrors.aliyun.com/ubuntu/ $Codename-updates main multiverse restricted universe
+    deb-src http://mirrors.aliyun.com/ubuntu/ $Codename main multiverse restricted universe
+    deb-src http://mirrors.aliyun.com/ubuntu/ $Codename-backports main multiverse restricted universe
+    deb-src http://mirrors.aliyun.com/ubuntu/ $Codename-proposed main multiverse restricted universe
+    deb-src http://mirrors.aliyun.com/ubuntu/ $Codename-security main multiverse restricted universe
+    deb-src http://mirrors.aliyun.com/ubuntu/ $Codename-updates main multiverse restricted universe " > /etc/apt/sources.list
+  apt-get update
+fi
+>>>>>>> 3163412b9f3f2a4fe37e7d2a495a7bc20762b7f4

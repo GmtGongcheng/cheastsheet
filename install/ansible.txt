@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #!/bin/bash
 
 if [ -x "$(command -v apt-get)" ]; then
@@ -11,4 +12,19 @@ if [ -x "$(command -v yum)" ]; then
   yum makecache
   
 yum install -y ansible
+=======
+#!/bin/bash
+
+if [ -x "$(command -v apt-get)" ]; then
+  apt-get install -y software-properties-common
+  apt-add-repository -y ppa:ansible/ansible
+  apt-get update
+  apt-get install -y ansible
+fi
+
+if [ -x "$(command -v yum)" ]; then
+  yum makecache
+  
+yum install -y ansible
+>>>>>>> 3163412b9f3f2a4fe37e7d2a495a7bc20762b7f4
 fi

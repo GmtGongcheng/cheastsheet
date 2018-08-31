@@ -1,3 +1,8 @@
+<<<<<<< HEAD
 $SPARK_HOME/conf/spark-env.sh中的
 SPARK_MASTER_IP= 项
+=======
+$SPARK_HOME/conf/spark-env.sh中的
+SPARK_MASTER_IP= 项
+>>>>>>> 3163412b9f3f2a4fe37e7d2a495a7bc20762b7f4
 必须是IP地址，不能为主机名

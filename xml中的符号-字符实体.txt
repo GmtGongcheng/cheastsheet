@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 &lt; 	< 	less than
 &gt; 	> 	greater than
 &amp; 	& 	ampersand
 &apos; 	' 	apostrophe
+=======
+&lt; 	< 	less than
+&gt; 	> 	greater than
+&amp; 	& 	ampersand
+&apos; 	' 	apostrophe
+>>>>>>> 3163412b9f3f2a4fe37e7d2a495a7bc20762b7f4
 &quot; 	" 	quotation mark

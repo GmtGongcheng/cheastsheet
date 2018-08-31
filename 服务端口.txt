@@ -1,6 +1,14 @@
+<<<<<<< HEAD
 9160:cassandra
 1024:test
 6379:redis
 7077:spark
 2181:zookeeper
+=======
+9160:cassandra
+1024:test
+6379:redis
+7077:spark
+2181:zookeeper
+>>>>>>> 3163412b9f3f2a4fe37e7d2a495a7bc20762b7f4
 9092:kafka
