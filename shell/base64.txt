@@ -1,0 +1,13 @@
+1. encode
+
+echo -n "admin" | base64
+
+期望输出：
+YWRtaW4=
+
+2. decode
+
+echo "YWRtaW4=" | base64 --decode
+
+期望输出：
+admin

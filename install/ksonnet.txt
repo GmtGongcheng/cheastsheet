@@ -1,0 +1,15 @@
+1 
+从GitHub上下载ksonnet的二进制压缩包；
+
+2
+解压
+ks_0.10.1_linux_amd64
+├── CHANGELOG.md
+├── CODE-OF-CONDUCT.md
+├── CONTRIBUTING.md
+├── ks
+├── LICENSE
+└── README.md
+
+3
+将解压缩得到文件夹中的二进制文件ks，cp至/usr/local/bin

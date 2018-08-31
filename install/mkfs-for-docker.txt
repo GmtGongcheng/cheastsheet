@@ -1,0 +1,23 @@
+为了支持overlay2存储：
+
+0. 系统：
+
+ext4 for 7.1
+xfs for 7.2 or higher
+
+1. 格式化，需要
+
+mkfs.xfs -f /dev/some-disk -n ftype=1
+
+2. 在/etc/docker/daemon.json中添加：
+{
+  "storage-driver": "overlay2"
+}
+
+若为centOS，则添加：
+{
+  "storage-driver": "overlay2",
+  "storage-opts": [
+    "overlay2.override_kernel_check=true"
+  ]
+}

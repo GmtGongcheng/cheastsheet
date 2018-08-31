@@ -1,0 +1,215 @@
+复用kubernetes的三台主机做glusterfs存储
+
+0. 开启kernel modules
+运行脚本（使用ansible）：
+cat prepare-kernel-modules.sh
+
+#!/bin/bash
+MODULES="dm_snapshot dm_mirror dm_thin_pool"
+for MODULE in $MODULES; do
+  modprobe $MODULE
+done
+for MODULE in $MODULES; do
+  lsmod | grep $MODULE
+done
+
+1. 安装glusterfs
+运行脚本（使用ansible）:
+cat install-glusterfs.sh
+
+#!/bin/bash
+
+DistributorID=$(lsb_release -i | awk -F ' ' '{print $3}' | tail -n 1)
+GlusterVer=3.12
+
+echo $DistributorID
+
+
+if [ "CentOS" == "$DistributorID" ]; then
+  yum install centos-release-gluster -y
+  yum install -y glusterfs glusterfs-server glusterfs-fuse glusterfs-rdma glusterfs-geo-replication glusterfs-devel
+elif [ "Ubuntu" == "$DistributorID" ]; then
+  add-apt-repository -y ppa:gluster/glusterfs-$GlusterVer
+  apt-get update
+  apt install -y glusterfs-server glusterfs-client
+else
+  echo "$(date) - $0 - [ERROR] - unknown Distributor ID."
+  exit 1
+fi
+
+需改配置，运行脚本（使用ansible）：
+cat config-glusterfs.sh
+
+#!/bin/bash
+VOL_FOR_GLUSTER="data1"
+# 开放端口
+iptables -I INPUT -p tcp --dport 24007 -j ACCEPT
+# 创建 glusterfs 目录
+mkdir -p /$VOL_FOR_GLUSTER/glusterd
+# 修改 glusterd 目录
+sed -i "s/var\/lib/$VOL_FOR_GLUSTER/g" /etc/glusterfs/glusterd.vol
+# 创建存储目录
+mkdir -p /$VOL_FOR_GLUSTER/gfs_data
+# 启动 glusterfs
+systemctl start glusterd
+# 设置开机启动
+systemctl enable glusterd
+
+2. 配置 glusterfs
+2.1 配置/etc/hosts
+使用脚本：
+cat config-etc-hosts.sh
+
+#!/bin/bash
+
+IF0=$(cat /etc/hosts | grep "node-")
+if [ -z "$IF0" ]; then
+  echo "172.31.78.215 node-215" >> /etc/hosts
+  echo "172.31.78.216 node-216" >> /etc/hosts
+  echo "172.31.78.217 node-217" >> /etc/hosts
+fi
+2.2 添加节点到集群
+在一台机器上进行即可，执行操作的本机不需要probe本机；如在node-217上，执行：
+# gluster peer probe node-215
+# gluster peer probe node-216
+
+查看集群状态：gluster peer status
+Number of Peers: 2
+
+Hostname: node-215
+Uuid: 432a243e-1a87-4a31-854e-3e71da4ffae6
+State: Peer in Cluster (Connected)
+
+Hostname: node-216
+Uuid: 22a9e7c3-9aa4-4882-8b00-dae7b42d4c99
+State: Peer in Cluster (Connected)
+
+3. 配置Volume
+#GlusterFS中的volume的模式有很多中，包括以下几种：
+
+分布卷（默认模式）：即DHT, 也叫 分布卷: 将文件已hash算法随机分布到 一台服务器节点中存储。
+复制模式：即AFR, 创建volume 时带 replica x 数量: 将文件复制到 replica x 个节点中。
+条带模式：即Striped, 创建volume 时带 stripe x 数量： 将文件切割成数据块，分别存储到 stripe x 个节点中 ( 类似raid 0 )。
+分布式条带模式：最少需要4台服务器才能创建。 创建volume 时 stripe 2 server = 4 个节点： 是DHT 与 Striped 的组合型。
+分布式复制模式：最少需要4台服务器才能创建。 创建volume 时 replica 2 server = 4 个节点：是DHT 与 AFR 的组合型。
+条带复制卷模式：最少需要4台服务器才能创建。 创建volume 时 stripe 2 replica 2 server = 4 个节点： 是 Striped 与 AFR 的组合型。
+三种模式混合： 至少需要8台 服务器才能创建。 stripe 2 replica 2 , 每4个节点 组成一个组。
+
+#创建复制卷：
+gluster volume create k8s-volume replica 3 transport tcp node-215:/data1/gfs_data node-216:/data1/gfs_data node-217:/data1/gfs_data force
+#查看volume状态：gluster volume info
+Volume Name: k8s-volume
+Type: Replicate
+Volume ID: 5909fb46-8409-43f5-a8fe-97da1dcbcde8
+Status: Started
+Snapshot Count: 0
+Number of Bricks: 1 x 3 = 3
+Transport-type: tcp
+Bricks:
+Brick1: node-215:/data1/gfs_data
+Brick2: node-216:/data1/gfs_data
+Brick3: node-217:/data1/gfs_data
+Options Reconfigured:
+performance.write-behind-window-size: 1024MB
+network.ping-timeout: 10
+performance.io-thread-count: 16
+performance.cache-size: 4GB
+features.quota-deem-statfs: on
+features.inode-quota: on
+features.quota: on
+transport.address-family: inet
+nfs.disable: on
+performance.client-io-threads: off
+
+#启动数据卷：
+gluster volume start k8s-volume
+
+4. Glusterfs调优
+运行脚本：
+cat tune-glusterfs.sh
+
+#!/bin/bash
+# 开启 指定 volume 的配额
+gluster volume quota k8s-volume enable
+# 限制 指定 volume 的配额
+gluster volume quota k8s-volume limit-usage / 1TB
+# 设置 cache 大小, 默认32MB
+gluster volume set k8s-volume performance.cache-size 4GB
+# 设置 io 线程, 太大会导致进程崩溃
+gluster volume set k8s-volume performance.io-thread-count 16
+# 设置 网络检测时间, 默认42s
+gluster volume set k8s-volume network.ping-timeout 10
+# 设置 写缓冲区的大小, 默认1M
+gluster volume set k8s-volume performance.write-behind-window-size 1024MB
+
+5. Kubernetes中配置glusterfs
+5.1 kubernetes安装客户端
+yum install -y glusterfs glusterfs-fuse
+配置/etc/hosts
+由于glusterfs跟kubernetes集群复用主机，因为此这一步可以省去。
+5.2 endpoints
+# 修改 endpoints.json ，配置 glusters 集群节点ip
+# 每一个 addresses 为一个 ip 组
+cat glusterfs-endpoints.json 
+
+{
+  "kind": "Endpoints",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "glusterfs-cluster"
+  },
+  "subsets": [
+    {
+      "addresses": [
+        {
+          "ip": "172.31.78.215"
+        }
+      ],
+      "ports": [
+        {
+          "port": 1990
+        }
+      ]
+    },
+    {
+      "addresses": [
+        {
+          "ip": "172.31.78.216"
+        }
+      ],
+      "ports": [
+        {
+          "port": 1990
+        }
+      ]
+    },
+    {
+      "addresses": [
+        {
+          "ip": "172.31.78.217"
+        }
+      ],
+      "ports": [
+        {
+          "port": 1990
+        }
+      ]
+    }
+  ]
+}
+
+5.3 配置 service
+cat glusterfs-service.json 
+
+{
+  "kind": "Service",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "glusterfs-cluster"
+  },
+  "spec": {
+    "ports": [
+      {"port": 1990}
+    ]
+  }
+}

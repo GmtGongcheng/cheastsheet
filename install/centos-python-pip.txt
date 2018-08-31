@@ -1,0 +1,8 @@
+1:
+yum -y install epel-release
+
+2:
+yum -y install python-pip
+
+3. Éý¼¶pip:
+pip install --upgrade pip

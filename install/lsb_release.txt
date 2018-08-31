@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if ! [ -x "$(command -v lsb_release)" ]; then
+  if [ -x "$(command -v yum)" ]; then
+    yum makecache
+    yum install -y redhat-lsb
+  fi
+fi

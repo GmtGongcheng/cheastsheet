@@ -1,0 +1,9 @@
+快速复制一行：光标移到该行
+              yy
+              p
+保存退出：shift+zz
+
+查看系统版本： cat/etc/*release*
+查看内存：fdisk -l
+
+判断linux是32位还是64位  getconf LONG_BIT

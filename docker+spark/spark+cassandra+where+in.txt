@@ -1,0 +1,9 @@
+第一主键 只能用=或IN查询
+
+第二主键 支持= ,> ,<, >= ,<= 但是必须后面加 ALLOW FILTERING
+
+索引列 只能用=查询
+
+in spark for primary key:
+
+val rows = rdd.select("datavalue").where("key in ?",Seq("10000006003110139C102017-03-02 00:00:00","10000014011810139C102017-03-04 00:00:00"))

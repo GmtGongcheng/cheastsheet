@@ -1,0 +1,9 @@
+1. Ubuntu
+
+apt-get clean && \ 
+rm -rf /var/lib/apt/lists/* && rm -rf /tmp/* /usr/share/man /usr/share/doc
+
+2. centOS
+
+yum clean all && \
+rm -rf /var/cache/yum

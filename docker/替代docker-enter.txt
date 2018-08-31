@@ -1,0 +1,3 @@
+docker exec -it $CONTAIN_NAME bash
+
+docker exec -it $(docker ps | grep | awk -F ' ' '{print $1}') /bin/bash

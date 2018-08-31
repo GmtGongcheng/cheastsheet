@@ -1,0 +1,3 @@
+查找磁盘上大于20MB的文件
+
+find / -size +20000k -exec ls -lh {} \;

@@ -1,0 +1,7 @@
+centos系统bash没有自动补全的解决方案：
+
+1. 安装bash-completion
+yum install -y bash-completion
+
+2. 重启
+reboot

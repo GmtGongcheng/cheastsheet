@@ -1,0 +1,9 @@
+删除虚拟网卡：
+
+ifconfig eth0:vip down
+
+删除虚拟IP：
+
+ip addr del 192.168.0.1 dev eth0
+
+ip addr del 172.31.78.200 dev eth0

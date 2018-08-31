@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -e
+
+if [ -x "$(command -v docker)" ]; then
+  if [ -n "$(docker images | grep '<none>' | awk -F ' ' '{print $3}')" ]; then
+    docker images | grep '<none>' | awk -F ' ' '{print $3}' | xargs docker rmi -f
+  else
+    echo "$(date) - $0 - no 'none' tagged image."
+  fi
+else
+  echo "$(date) - $0 - [WARN] - no docker installed."
+fi

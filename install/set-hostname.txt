@@ -1,0 +1,15 @@
+1 永久修改hostname
+
+echo $name > /etc/hostname
+
+
+2 立即生效（对于当前对话无效）
+
+hostnamectl set-hostname $your-new-hostname
+
+===============================================
+
+快捷：
+
+name=node-215 && echo $name > /etc/hostname && hostnamectl set-hostname $name
+

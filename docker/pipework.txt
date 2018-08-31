@@ -1,0 +1,7 @@
+利用pipework命令指定docker容器的IP、子网掩码和GATEWAY：
+
+pipework <bridge> <container> ip/netmask@gateway
+
+如果网桥为br0、容器名称为test1、IP地址为192.168.1.44、子网掩码为24、GATEWAY为192.168.1.1：
+
+pipework br0 test1 192.168.1.44/24@192.168.1.1

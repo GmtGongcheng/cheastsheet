@@ -1,0 +1,1 @@
+apt-get -f install 在Linux中使用命令 apt-get install 或 dpkg -i 时有时候会出现依赖错误，此时，紧接着执行：apt-get -f install 即可。-f的作用是修复依赖损坏处，-f 即 fix broken。

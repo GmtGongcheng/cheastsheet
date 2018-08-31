@@ -1,0 +1,29 @@
+#
+# 读操作不需要Root权限user.name=root；
+# 写操作  需要Root权限。
+#
+######################################################################################################
+
+1 先提交一个不自动重定向的，不发送文件的请求：
+$ curl -i -X PUT "http://ip:port/webhdfs/v1/path/to/file/?user.name=root&op=CREATE"
+
+其中，ip和port都是NameNode的；NameNode会返回一个DataNode的重定向地址用于写入，如：
+HTTP/1.1 307 TEMPORARY_REDIRECT
+Cache-Control: no-cache
+Expires: Mon, 17 Apr 2017 07:26:25 GMT
+Date: Mon, 17 Apr 2017 07:26:25 GMT
+Pragma: no-cache
+Expires: Mon, 17 Apr 2017 07:26:25 GMT
+Date: Mon, 17 Apr 2017 07:26:25 GMT
+Pragma: no-cache
+Content-Type: application/octet-stream
+X-FRAME-OPTIONS: SAMEORIGIN
+Set-Cookie: hadoop.auth="u=root&p=root&t=simple&e=1492449985057&s=YKNeHrj3ravLNx0kzC/3ONTuKys="; Path=/; HttpOnly
+Location: http://ubuntu-154:50075/webhdfs/v1/user/root/input/test0x03?op=CREATE&user.name=root&namenoderpcaddress=localhost:9000&createflag=&createparent=true&overwrite=false
+Content-Length: 0
+Server: Jetty(6.1.26)
+
+######################################################################################################
+
+2 上传文件：
+$ curl -i -X PUT -T /path/to/local/file "redirected_http"

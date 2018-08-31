@@ -1,0 +1,10 @@
+向/etc/crontab写入例行性任务，格式是：
+
+# min hour day month week user cmd
+# 分  时   日  月    周   用户 命令
+
+如：
+
+echo "*/1 * * * * root /usr/local/action.sh" >> /etc/crontab
+
+即每隔一分钟运行/usr/local/action.sh脚本

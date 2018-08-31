@@ -1,0 +1,10 @@
+1 创建HiveContext
+
+>>>from pyspark.sql import HiveContext
+>>>hiveCtx = HiveContext(sc)
+
+2 Python用Spark SQL加载JSON
+
+>>>table = hiveCtx.read.json("data.json")
+>>>table.registerTmpTable("tableName")
+>>>ret = hiveCtx.sql("SELECT * FROM tableName")

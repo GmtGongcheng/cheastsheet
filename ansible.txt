@@ -1,0 +1,18 @@
+1 copy文件夹
+
+如：
+src=/home/test
+dest=/tmp
+
+ansible all -m copy -a "src=/home/test dest=/tmp"
+将/home/test文件夹cp到/tmp，即目标为/tmp/test
+
+而：
+ansible all -m copy -a "src=/home/test/ dest=/tmp"
+将/home/test文件夹下的所有文件cp至/tmp
+
+2 copy模块权限
+
+copy过后，有x权限的文件可能不会具备x权限，可以在copy的-a加入mode字段，即：
+
+ansible all -m copy -a "src=/vagrant/kubelet dest=/usr/local/bin mode='u+rwx'"

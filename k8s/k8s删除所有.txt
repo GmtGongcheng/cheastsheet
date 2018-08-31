@@ -1,0 +1,1 @@
+kubectl delete --all rc,pod,svc --namespace=dev

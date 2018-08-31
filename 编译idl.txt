@@ -1,0 +1,4 @@
+将MIDL.exe 和 cl.exe 同 PANSL.IDL放一起
+
+
+midl /char unsigned /oldnames /cpp_cmd cl /cpp_opt /E /Zp1 PANSI.IDL

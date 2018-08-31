@@ -1,0 +1,18 @@
+0. 账号设置
+git config --global user.name "your-name"
+git config --global user.email "your-email"
+git config --global push.default "current"
+
+1. push 过程：
+git add .
+git commit -m "first commit"
+(git add file -m "something")
+git remote add origin $URL
+git push -u origin master
+
+2. pull
+git pull origin master
+
+3. 撤销 git add
+撤销全部：git reset HEAD .
+撤销$FILE：git reset HEAD $FILE

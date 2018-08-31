@@ -1,0 +1,13 @@
+server:
+
+iperf3 -s
+
+client:
+
+iperf3 -u -c $ipref-server-ip -b 10000M -t 60
+
+-u, --udp                 use UDP rather than TCP
+-b, --bandwidth #[KMG][/#] target bandwidth in bits/sec (0 for unlimited)
+                            (default 1 Mbit/sec for UDP, unlimited for TCP)
+                            (optional slash and packet count for burst mode)
+-t, --time      #         time in seconds to transmit for (default 10 secs)

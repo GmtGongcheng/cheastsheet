@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -e
+
+if [ -x "$(command -v docker)" ]; then
+  if [ -n "$(docker ps -a | grep Exited | awk -F ' ' '{print $1}')" ]; then
+    docker ps -a | grep Exited | awk -F ' ' '{print $1}' | xargs docker rm -f
+  else
+    echo "$(date) - $0 - no 'exited' tagged containers."
+  fi
+else
+  echo "$(date) - $0 - [WARN] - no docker installed."
+fi

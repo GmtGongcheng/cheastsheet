@@ -1,0 +1,15 @@
+0：
+需要安装：
+bash-completion
+（一般都已安装）
+
+1.
+命令：
+source <(kubectl completion bash)
+仅此终端、单次生效
+
+2.
+自动生效：
+将命令
+source <(kubectl completion bash)
+写入/etc/profile

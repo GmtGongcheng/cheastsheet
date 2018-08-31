@@ -1,0 +1,3 @@
+$SPARK_HOME/conf/spark-env.sh中的
+SPARK_MASTER_IP= 项
+必须是IP地址，不能为主机名

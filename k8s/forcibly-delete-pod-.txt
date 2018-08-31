@@ -1,0 +1,1 @@
+kubectl delete --namespace ${your-namespace} pod ${your-pod-name} --grace-period=0 --force

@@ -1,0 +1,13 @@
+0: ubuntu 16.04
+从openvz模板制作的原版系统
+
+1: ubuntu-16.04-1
+with curl && jdk8 && python-etcd
+
+2: ubuntu-16.04-2
+with 16.04-1
+&& expect && ansible
+
+3: ubuntu-16.04-3
+with 16.04-2
+&& cassandra-python-driver

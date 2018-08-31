@@ -1,0 +1,23 @@
+﻿1. 去掉‘export’
+sed -i 's/export //g' $DEST
+
+2. 删除注释
+sed -i '/^#/d' $DEST
+
+3. 删除空行
+sed -i '/^$/d' $DEST
+
+4. 替换from到to
+sed -i "s/$FROM/$TO/g" $DEST
+
+5. 替换存在from的行到to
+sed -i "/$FROM/ c $TO" $DEST
+
+6. 插入
+在"exit 0"前插入"do something"
+sed -i '/^exit 0$/i\do something' $DEST
+在"exit 0"后"do meaningless
+sed -i '/^exit 0$/a\do meaningless' $DEST
+
+7. 处理“\”作为分隔符的错误，更换分隔符，比如%
+sed -i s%"$FROM"%"$TO"%g $DEST

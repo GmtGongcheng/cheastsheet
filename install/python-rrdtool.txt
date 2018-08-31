@@ -1,0 +1,3 @@
+apt-get install -y python-rrdtool
+
+yum install -y python-rrdtool

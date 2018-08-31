@@ -1,0 +1,7 @@
+打印的主要是设置：
+
+Spark context available as 'sc':
+
+for (i <- sc.getConf.getAll){
+    println(i);
+}

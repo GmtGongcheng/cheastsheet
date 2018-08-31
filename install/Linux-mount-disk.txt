@@ -1,0 +1,49 @@
+0x00
+浏览/dev，配合命令<df -h>查找硬盘
+
+假设存在：
+/dev/sda
+/dev/sda1
+/dev/sdb
+/dev/sdb1
+
+<df -h>显示已挂载/dev/sda1
+
+0x01
+运行
+fdisk /dev/sdb
+进入fdisk磁盘管理界面：
+
+输入 d 删除原有分区
+输入 n 新建分区 
+
+q是不作改动退出
+w是执行改动
+
+0x02
+利用命令:
+mkfs.ext4 /dev/vdb1
+格式化sdb为ext4格式
+
+0x03
+通过命令
+ls -l /dev/disk/by-uuid
+查询sdb的uuid
+
+0x04 
+修改文件
+/etc/fstab
+新建sdb的挂载信息
+如：
+/dev/sda9    /home/user/mnt    ext4    defaults   0  0
+
+UUID=	/	ext4	defaults	0	0
+
+/dev/md0 /data xfs defaults 0 0
+
+/dev/sda3 /opt xfs defaults 0 0
+
+0x05
+利用命令
+mount -a
+执行改动

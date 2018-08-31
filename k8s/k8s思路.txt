@@ -1,0 +1,7 @@
+思路：
+
+单独为Cassandra的seed建立一个svc，将svc的名称作为其余节点的环境变量，如：$DCVR
+
+在容器中执行：
+getent hosts $DCVR
+即可获取种子节点的ip地址

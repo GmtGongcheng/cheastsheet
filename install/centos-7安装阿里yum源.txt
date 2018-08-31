@@ -1,0 +1,1 @@
+cd /etc/yum.repos.d && if [ -f CentOS-Base.repo ]; then mv -f CentOS-Base.repo CentOS-Base.repo.bak; fi && wget -O CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo && yum clean all && yum makecache && cd -

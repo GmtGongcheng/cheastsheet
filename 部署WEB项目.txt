@@ -1,0 +1,5 @@
+1 基于Eclipse，右键项目选中Export，导出.war文件
+
+2 将.war文件放置于tomcat_dir/webapps下
+
+3 启动tomcat_dir/bin下的startup（Win为.bat；Linux为.sh）
