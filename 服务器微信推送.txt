@@ -1,0 +1,1 @@
+curl -X POST -d "text=test&desp=hello world" http://sc.ftqq.com/SCU32456T6886dfdfc2fda8f007959f8c482159dc5ba091bee5559.send 
