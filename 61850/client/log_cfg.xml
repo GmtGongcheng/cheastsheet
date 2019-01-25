@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v4.0 (http://www.xmlspy.com) (SISCO/Engineering) -->
+
+<!-- ****************************************************************** -->
+<!-- * SISCO MODULE HEADER ******************************************** -->
+<!-- ****************************************************************** -->
+<!-- *   (c) Copyright Systems Integration Specialists Company, Inc.,   -->
+<!-- *                      2001, All Rights Reserved                   -->
+<!-- *                                                                  -->
+<!-- * MODULE NAME : LogCfg.xml                                         -->
+<!-- * PRODUCT(S)  : MMS-Lite                                           -->
+<!-- *                                                                  -->
+<!-- * MODULE DESCRIPTION :  Logging Configuration File                 -->
+<!-- *                                                                  -->
+<!-- *  This file is used to set the log masks used to control          -->
+<!-- *  logging performed by the MMS-EASE Lite Debug Libraries,         -->
+<!-- *  as well as to set memory debug flags. This module is            -->
+<!-- *  read by the source module 'logcfgx.c'.                          -->
+<!-- *                                                                  -->
+<!-- * MODIFICATION LOG :                                               -->
+<!-- *  Date     Who   Rev  Comments                                    -->
+<!-- * =======  =====  === ==========================                   -->
+<!-- * 11/01/01  GLB    07  Added schema file                           -->        
+<!-- * 03/13/01  GLB    06  Added SX_LOG_... masks                      -->  
+<!-- * 02/22/01  GLB    05  Added MVLULOG_... masks						-->
+<!-- * 01/04/01  GLB    04  Added for MARBEN stack:                     -->
+<!-- *                            ACSE_ERR_PRINT, ACSE_NERR_PRINT       -->
+<!-- * 11/29/00  GLB    03  Correct connection to DTD         			-->
+<!-- * 11/29/00  GLB    02  Change logMemoryItems to logMemorySize		-->
+<!-- * 11/17/00  GLB    01  Created         							-->
+<!-- ****************************************************************** -->
+
+<!DOCTYPE LOG_CFG SYSTEM "..\logcfg.dtd">
+<LOG_CFG xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="..\logcfg.xsd">
+    <SxLogMasks>
+		<SX_LOG_NERR>ON</SX_LOG_NERR>
+		<SX_LOG_DEC>OFF</SX_LOG_DEC>
+		<SX_LOG_ENC>OFF</SX_LOG_ENC>
+		<SX_LOG_FLOW>OFF</SX_LOG_FLOW>
+		<SX_LOG_DEBUG>OFF</SX_LOG_DEBUG>
+	</SxLogMasks>
+	<LogControl>
+		<LogFileAttributes>
+			<LogFileEnable>ON</LogFileEnable>
+			<LogFileSize>70960000</LogFileSize>
+			<LogFileName>log_mms.log</LogFileName>
+		</LogFileAttributes>
+		<LogMemoryAttributes>
+			<LogMemoryEnable>on</LogMemoryEnable>
+			<LogMemoryItems>1000</LogMemoryItems>
+			<MemoryFileName>runtip.log</MemoryFileName>
+			<MemoryFileDump>OFF</MemoryFileDump>
+		</LogMemoryAttributes>
+		<MiscControlFlags>
+			<TimeEnable>TimeDate</TimeEnable>
+			<DestroyOldFile>ON</DestroyOldFile>
+			<Setbuf>ON</Setbuf>
+			<MsgHeader>ON</MsgHeader>
+			<Wipe>ON</Wipe>
+			<Wrap>ON</Wrap>
+			<HardFlush>ON</HardFlush>
+			<HeaderCr>ON</HeaderCr>
+			<HeaderFilename>ON</HeaderFilename>
+			<HeaderLogType>ON</HeaderLogType>
+		</MiscControlFlags>
+	</LogControl>
+	<UserLogMasks>
+		<USER_LOG_CLIENT>OFF</USER_LOG_CLIENT>
+		<USER_LOG_SERVER>OFF</USER_LOG_SERVER>
+	</UserLogMasks>
+	<Asn1LogMasks>
+		<ASN1_LOG_NERR>OFF</ASN1_LOG_NERR>
+		<ASN1_LOG_DEC>OFF</ASN1_LOG_DEC>
+		<ASN1_LOG_ENC>OFF</ASN1_LOG_ENC>
+	</Asn1LogMasks>
+	<MmsLogMasks>
+		<MMS_LOG_NERR>OFF</MMS_LOG_NERR>
+		<MMS_LOG_DEC>OFF</MMS_LOG_DEC>
+		<MMS_LOG_ENC>OFF</MMS_LOG_ENC>
+		<MMS_LOG_RT>OFF</MMS_LOG_RT>
+		<MMS_LOG_RTAA>OFF</MMS_LOG_RTAA>
+		<MMS_LOG_AA>OFF</MMS_LOG_AA>
+	</MmsLogMasks>
+	<MvlLogMasks>
+		<MVLLOG_NERR>OFF</MVLLOG_NERR>
+		<MVLLOG_ACSE>OFF</MVLLOG_ACSE>
+		<MVLLOG_ACSEDATA>OFF</MVLLOG_ACSEDATA>
+		<MVLULOG_FLOW>OFF</MVLULOG_FLOW>
+		<MVLULOG_DEBUG>OFF</MVLULOG_DEBUG>
+		<MVLULOG_TIMING>OFF</MVLULOG_TIMING>
+	</MvlLogMasks>
+	<AcseLogMasks>
+		<ACSE_LOG_ENC>OFF</ACSE_LOG_ENC>
+		<ACSE_LOG_DEC>OFF</ACSE_LOG_DEC>
+		<ACSE_NERR_PRINT>OFF</ACSE_NERR_PRINT>
+		<ACSE_IND_PRINT>OFF</ACSE_IND_PRINT>
+		<ACSE_CNF_PRINT>OFF</ACSE_CNF_PRINT>
+		<ACSE_DEC_PRINT>OFF</ACSE_DEC_PRINT>
+		<ACSE_ABORT_PRINT>OFF</ACSE_ABORT_PRINT>
+	</AcseLogMasks>
+	<Tp4LogMasks>
+		<TP4_LOG_FLOWUP>OFF</TP4_LOG_FLOWUP>
+		<TP4_LOG_FLOWDOWN>OFF</TP4_LOG_FLOWDOWN>
+	</Tp4LogMasks>
+	<ClnpLogMasks>
+		<CLNP_LOG_NERR>OFF</CLNP_LOG_NERR>
+		<CLNP_LOG_REQ>OFF</CLNP_LOG_REQ>
+		<CLNP_LOG_IND>OFF</CLNP_LOG_IND>
+		<CLSNS_LOG_REQ>OFF</CLSNS_LOG_REQ>
+		<CLSNS_LOG_IND>OFF</CLSNS_LOG_IND>
+	</ClnpLogMasks>
+	<AdlcLogMasks>
+		<ADLC_LOG_NERR>OFF</ADLC_LOG_NERR>
+		<ADLC_LOG_FLOW>OFF</ADLC_LOG_FLOW>
+		<ADLC_LOG_IO>OFF</ADLC_LOG_IO>
+		<ADLC_LOG_HEXIO>OFF</ADLC_LOG_HEXIO>
+		<ADLC_LOG_SM>OFF</ADLC_LOG_SM>
+		<ADLC_LOG_HEXSM>OFF</ADLC_LOG_HEXSM>
+		<ADLC_LOG_USER>OFF</ADLC_LOG_USER>
+		<ADLC_LOG_HEXUSER>OFF</ADLC_LOG_HEXUSER>
+	</AdlcLogMasks>
+	<SmpLogMasks>
+		<SMP_LOG_REQ>OFF</SMP_LOG_REQ>
+		<SMP_LOG_IND>OFF</SMP_LOG_IND>
+	</SmpLogMasks>
+	<MemLogMasks>
+		<MEM_LOG_CALLOC>OFF</MEM_LOG_CALLOC>
+		<MEM_LOG_MALLOC>OFF</MEM_LOG_MALLOC>
+		<MEM_LOG_REALLOC>OFF</MEM_LOG_REALLOC>
+		<MEM_LOG_FREE>OFF</MEM_LOG_FREE>
+	</MemLogMasks>
+	<MemAllocDbgCtrl>
+		<MemFillEnable>OFF</MemFillEnable>
+		<MemHeapCheck>OFF</MemHeapCheck>
+		<CheckListEnable>OFF</CheckListEnable>
+		<FindNodeEnable>OFF</FindNodeEnable>
+		<TrackPrevFree>OFF</TrackPrevFree>
+		<ListDebugSel>OFF</ListDebugSel>
+		<NoReallocSmaller>OFF</NoReallocSmaller>
+	</MemAllocDbgCtrl>
+</LOG_CFG>
+<!--##################### GENERAL LOG CONTROL ####################
+#
+#         Log File Attributes
+#  FileLogEn   	             # Log to a file - ON/OFF 
+#  LogFileSize= 1000000      # 0 to 32767
+#  LogFileName= mms.log      # character string, up to 256 characters
+#
+#
+#         Memory Resident Logging Attributes
+#  MemLogEn   		     # Log to memory - ON/OFF
+#  LogMemItems= 1000	     # 0 to 32767
+#  DumpFileName= mmsdmem.log # character string, 0 to 256
+#  MemAutoDump 		     # dump what is in memory to file
+#                              configured as "DumpFileName"
+#                              when "LogMenuItems" limit is reached
+#
+#
+#         Misc. Control Flags
+#  TimeEnable		 # print in log file :
+#                              TimeDate    = Time of day and date
+#                              ElapsedTime = Elapsed time in ms
+#  DestroyOldFile        # ON  = destroy existing file
+#                          OFF = append to existing file
+#  Setbuf      		 # use setbuf(fh,NULL) after file open - ON/OFF
+#  Msgheader 		 # print message header in log file - ON/OFF
+#  Wipe      		 # wipe bar in wrapped log file - ON/OFF
+#  Wrap      		 # wrap log file - ON/OFF
+#  HardFlush   		 # close and reopen log file each time a message is logged - ON/OFF
+#  HeaderCr  		 # CR after header line in log file - ON/OFF
+#  HeaderFilename	 # filename or line number printed in log file - ON/OFF
+#  HeaderLogtype	 # log type printed in log file header - ON/OFF
+#
+#  	   Integrity checking on memory allocation
+#  (Not really related to logging, but no better place to put it.)
+#  MemFillEn             # ON/OFF
+#  MemHeapCheck          # ON/OFF
+#  CheckListEnable       # ON/OFF
+#  FindNodeEnable        # ON/OFF
+#  TrackPrevFree         # ON/OFF
+#  ListDebugSel          # ON/OFF
+#  NoReallocSmaller      # ON/OFF
+#
+#################################################################
+-->

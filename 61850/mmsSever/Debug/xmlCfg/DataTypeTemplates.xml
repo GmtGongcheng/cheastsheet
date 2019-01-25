@@ -1,0 +1,1017 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SCL xmlns="http://www.iec.ch/61850/2003/SCL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.iec.ch/61850/2003/SCL SCL.xsd">
+	<Header id="TEMP.icd" version="1.0" nameStructure="IEDName">
+		<History>
+			<Hitem version="1" revision="01" when="2015-10-14" who="zhanghua" what="Create"/>
+		</History>
+	</Header>
+	<Communication>
+		<SubNetwork name="MMS" type="8-MMS">
+			<BitRate unit="b/s">1000000</BitRate>
+		</SubNetwork>
+	</Communication>
+	<IED name="TEMP" type="TEMP" desc="" manufacturer="XDDY" configVersion="V1.0">
+		<Services>
+			<DynAssociation/>
+			<SettingGroups>
+				<SGEdit/>
+				<ConfSG/>
+			</SettingGroups>
+			<GetDirectory/>
+			<GetDataObjectDefinition/>
+			<DataObjectDirectory/>
+			<GetDataSetValue/>
+			<DataSetDirectory/>
+			<ConfDataSet max="40" maxAttributes="80"/>
+			<DynDataSet max="4" maxAttributes="20"/>
+			<ReadWrite/>
+			<ConfReportControl max="10"/>
+			<GetCBValues/>
+			<ReportSettings bufTime="Dyn" cbName="Conf" rptID="Dyn" datSet="Conf" intgPd="Dyn" optFields="Conf" trgOps="Dyn"/>
+			<GOOSE max="50"/>
+			<GSESettings appID="Conf" cbName="Conf" datSet="Conf"/>
+			<FileHandling/>
+		</Services>
+		<AccessPoint name="S1">
+			<Server>
+				<Authentication/>
+			</Server>
+		</AccessPoint>
+	</IED>
+	<DataTypeTemplates>
+		<LNodeType id="CN_LPHD" lnClass="LPHD">
+			<DO type="CN_DPL" name="PhyNam"></DO>
+			<DO type="CN_INS_Health" name="PhyHealth"></DO>
+			<DO type="CN_SPS" name="Proxy"></DO>
+		</LNodeType>
+		<LNodeType id="CN_LLN0" lnClass="LLN0">
+			<DO type="CN_INC_Mod" name="Mod"></DO>
+			<DO type="CN_INS_Beh" name="Beh"></DO>
+			<DO type="CN_INS_Health" name="Health"></DO>
+			<DO type="CN_LPL_LN0" name="NamPlt"></DO>
+		</LNodeType>
+		<LNodeType id="CN_LLN0_CTRL" lnClass="LLN0">
+			<DO type="CN_INC_Mod" name="Mod"></DO>
+			<DO type="CN_INS_Beh" name="Beh"></DO>
+			<DO type="CN_INS_Health" name="Health"></DO>
+			<DO type="CN_LPL_LN0" name="NamPlt"></DO>
+			<DO type="CN_SPS" name="Loc"/>
+			<DO type="CN_SPC" name="LEDRs"/>
+		</LNodeType>
+		<LNodeType id="CN_CSWI_CTRL" lnClass="CSWI">
+			<DO type="CN_INC_Mod" name="Mod"></DO>
+			<DO type="CN_INS_Beh" name="Beh"></DO>
+			<DO type="CN_INS_Health" name="Health"></DO>
+			<DO type="CN_LPL" name="NamPlt"></DO>
+			<DO type="CN_SPS" name="Loc"></DO>
+			<DO type="CN_DPC" name="Pos"></DO>
+		</LNodeType>
+		<LNodeType id="CN_GGIO_16" lnClass="GGIO">
+			<DO name="Mod" type="CN_INC_Mod"/>
+			<DO name="Beh" type="CN_INS_Beh"/>
+			<DO name="Health" type="CN_INS_Health"/>
+			<DO name="NamPlt" type="CN_LPL"/>
+			<DO name="Ind1" type="CN_SPS"/>
+			<DO name="Ind2" type="CN_SPS"/>
+			<DO name="Ind3" type="CN_SPS"/>
+			<DO name="Ind4" type="CN_SPS"/>
+			<DO name="Ind5" type="CN_SPS"/>
+			<DO name="Ind6" type="CN_SPS"/>
+			<DO name="Ind7" type="CN_SPS"/>
+			<DO name="Ind8" type="CN_SPS"/>
+			<DO name="Ind9" type="CN_SPS"/>
+			<DO name="Ind10" type="CN_SPS"/>
+			<DO name="Ind11" type="CN_SPS"/>
+			<DO name="Ind12" type="CN_SPS"/>
+			<DO name="Ind13" type="CN_SPS"/>
+			<DO name="Ind14" type="CN_SPS"/>
+			<DO name="Ind15" type="CN_SPS"/>
+			<DO name="Ind16" type="CN_SPS"/>
+		</LNodeType>
+		<LNodeType id="CN_GGIO_Alm" lnClass="GGIO">
+			<DO name="Mod" type="CN_INC_Mod"/>
+			<DO name="Beh" type="CN_INS_Beh"/>
+			<DO name="Health" type="CN_INS_Health"/>
+			<DO name="NamPlt" type="CN_LPL"/>
+			<DO name="Alm1" type="CN_SPS"/>
+			<DO name="Alm2" type="CN_SPS"/>
+			<DO name="Alm3" type="CN_SPS"/>
+			<DO name="Alm4" type="CN_SPS"/>
+			<DO name="Alm5" type="CN_SPS"/>
+			<DO name="Alm6" type="CN_SPS"/>
+			<DO name="Alm7" type="CN_SPS"/>
+			<DO name="Alm8" type="CN_SPS"/>
+			<DO name="Alm9" type="CN_SPS"/>
+			<DO name="Alm10" type="CN_SPS"/>
+			<DO name="Alm11" type="CN_SPS"/>
+			<DO name="Alm12" type="CN_SPS"/>
+			<DO name="Alm13" type="CN_SPS"/>
+			<DO name="Alm14" type="CN_SPS"/>
+			<DO name="Alm15" type="CN_SPS"/>
+			<DO name="Alm16" type="CN_SPS"/>
+		</LNodeType>
+		<LNodeType id="CN_LLN0_LD0" lnClass="LLN0">
+			<DO name="Mod" type="CN_INC_Mod"/>
+			<DO name="Beh" type="CN_INS_Beh"/>
+			<DO name="Health" type="CN_INS_Health"/>
+			<DO name="NamPlt" type="CN_LPL_LN0"/>
+			<DO name="set1" type="CN_ASG_SG_EX"/>
+			<DO name="set2" type="CN_ASG_SG_EX"/>
+			<DO name="set3" type="CN_ASG_SG_EX"/>
+			<DO name="set4" type="CN_ASG_SG_EX"/>
+			<DO name="set5" type="CN_ASG_SG_EX"/>
+			<DO name="set6" type="CN_ASG_SG_EX"/>
+			<DO name="set7" type="CN_ASG_SG_EX"/>
+			<DO name="set8" type="CN_ASG_SG_EX"/>
+			<DO name="set9" type="CN_ASG_SG_EX"/>
+			<DO name="set10" type="CN_ASG_SG_EX"/>
+			<DO name="set11" type="CN_ASG_SG_EX"/>
+			<DO name="set12" type="CN_ASG_SG_EX"/>
+			<DO name="set13" type="CN_ASG_SG_EX"/>
+			<DO name="set14" type="CN_ASG_SG_EX"/>
+			<DO name="set15" type="CN_ASG_SG_EX"/>
+			<DO name="set16" type="CN_ASG_SG_EX"/>
+			<DO name="set17" type="CN_ASG_SG_EX"/>
+			<DO name="set18" type="CN_ASG_SG_EX"/>
+			<DO name="set19" type="CN_ASG_SG_EX"/>
+			<DO name="set20" type="CN_ASG_SG_EX"/>
+			<DO name="set21" type="CN_ASG_SG_EX"/>
+			<DO name="set22" type="CN_ASG_SG_EX"/>
+			<DO name="set23" type="CN_ASG_SG_EX"/>
+			<DO name="set24" type="CN_ASG_SG_EX"/>
+			<DO name="set25" type="CN_ASG_SG_EX"/>
+			<DO name="set26" type="CN_ASG_SG_EX"/>
+			<DO name="set27" type="CN_ASG_SG_EX"/>
+			<DO name="set28" type="CN_ASG_SG_EX"/>
+			<DO name="set29" type="CN_ASG_SG_EX"/>
+			<DO name="set30" type="CN_ASG_SG_EX"/>
+			<DO name="set31" type="CN_ASG_SG_EX"/>
+			<DO name="set32" type="CN_ASG_SG_EX"/>
+			<DO name="set33" type="CN_ASG_SG_EX"/>
+			<DO name="set34" type="CN_ASG_SG_EX"/>
+			<DO name="set35" type="CN_ASG_SG_EX"/>
+			<DO name="set36" type="CN_ASG_SG_EX"/>
+			<DO name="set37" type="CN_ASG_SG_EX"/>
+			<DO name="set38" type="CN_ASG_SG_EX"/>
+			<DO name="set39" type="CN_ASG_SG_EX"/>
+			<DO name="set40" type="CN_ASG_SG_EX"/>
+			<DO name="set41" type="CN_ASG_SG_EX"/>
+			<DO name="set42" type="CN_ASG_SG_EX"/>
+			<DO name="set43" type="CN_ASG_SG_EX"/>
+			<DO name="set44" type="CN_ASG_SG_EX"/>
+		</LNodeType>
+		<LNodeType id="CN_GGIO_ALM32" lnClass="GGIO">
+			<DO name="Mod" type="CN_INC_Mod"/>
+			<DO name="Beh" type="CN_INS_Beh"/>
+			<DO name="Health" type="CN_INS_Health"/>
+			<DO name="NamPlt" type="CN_LPL"/>
+			<DO name="Alm1" type="CN_SPS"/>
+			<DO name="Alm2" type="CN_SPS"/>
+			<DO name="Alm3" type="CN_SPS"/>
+			<DO name="Alm4" type="CN_SPS"/>
+			<DO name="Alm5" type="CN_SPS"/>
+			<DO name="Alm6" type="CN_SPS"/>
+			<DO name="Alm7" type="CN_SPS"/>
+			<DO name="Alm8" type="CN_SPS"/>
+			<DO name="Alm9" type="CN_SPS"/>
+			<DO name="Alm10" type="CN_SPS"/>
+			<DO name="Alm11" type="CN_SPS"/>
+			<DO name="Alm12" type="CN_SPS"/>
+			<DO name="Alm13" type="CN_SPS"/>
+			<DO name="Alm14" type="CN_SPS"/>
+			<DO name="Alm15" type="CN_SPS"/>
+			<DO name="Alm16" type="CN_SPS"/>
+			<DO name="Alm17" type="CN_SPS"/>
+			<DO name="Alm18" type="CN_SPS"/>
+			<DO name="Alm19" type="CN_SPS"/>
+			<DO name="Alm20" type="CN_SPS"/>
+			<DO name="Alm21" type="CN_SPS"/>
+			<DO name="Alm22" type="CN_SPS"/>
+			<DO name="Alm23" type="CN_SPS"/>
+			<DO name="Alm24" type="CN_SPS"/>
+			<DO name="Alm25" type="CN_SPS"/>
+			<DO name="Alm26" type="CN_SPS"/>
+			<DO name="Alm27" type="CN_SPS"/>
+			<DO name="Alm28" type="CN_SPS"/>
+			<DO name="Alm29" type="CN_SPS"/>
+			<DO name="Alm30" type="CN_SPS"/>
+			<DO name="Alm31" type="CN_SPS"/>
+			<DO name="Alm32" type="CN_SPS"/>
+			<DO name="Alm33" type="CN_SPS"/>
+			<DO name="Alm34" type="CN_SPS"/>
+			<DO name="Alm35" type="CN_SPS"/>
+		</LNodeType>
+		<LNodeType id="CN_MMXN" lnClass="MMXN">
+			<DO name="Mod" type="CN_INC_Mod"/>
+			<DO name="Beh" type="CN_INS_Beh"/>
+			<DO name="Health" type="CN_INS_Health"/>
+			<DO name="NamPlt" type="CN_LPL"/>
+			<DO name="U1" type="CN_MV_EX"/>
+			<DO name="U2" type="CN_MV_EX"/>
+			<DO name="U3" type="CN_MV_EX"/>
+			<DO name="U4" type="CN_MV_EX"/>
+			<DO name="U5" type="CN_MV_EX"/>
+			<DO name="U6" type="CN_MV_EX"/>
+			<DO name="I1" type="CN_MV_EX"/>
+			<DO name="I2" type="CN_MV_EX"/>
+			<DO name="I3" type="CN_MV_EX"/>
+			<DO name="I4" type="CN_MV_EX"/>
+			<DO name="I5" type="CN_MV_EX"/>
+			<DO name="I6" type="CN_MV_EX"/>
+		</LNodeType>
+		<DOType id="CN_SPS" cdc="SPS">
+			<DA name="stVal" bType="BOOLEAN" dchg="true" fc="ST"/>
+			<DA name="q" bType="Quality" qchg="true" fc="ST"/>
+			<DA name="t" bType="Timestamp" fc="ST"/>
+			<DA name="subEna" bType="BOOLEAN" fc="SV"/>
+			<DA name="subVal" bType="BOOLEAN" fc="SV"/>
+			<DA name="subQ" bType="Quality" fc="SV"/>
+			<DA name="subID" bType="VisString64" fc="SV"/>
+			<DA name="d" bType="VisString255" fc="DC"/>
+			<DA name="dU" bType="Unicode255" fc="DC"/>
+		</DOType>
+		<DOType id="CN_SPS_EX" cdc="SPS">
+			<DA name="stVal" bType="BOOLEAN" dchg="true" fc="ST"/>
+			<DA name="q" bType="Quality" qchg="true" fc="ST"/>
+			<DA name="t" bType="Timestamp" fc="ST"/>
+			<DA name="subEna" bType="BOOLEAN" fc="SV"/>
+			<DA name="subVal" bType="BOOLEAN" fc="SV"/>
+			<DA name="subQ" bType="Quality" fc="SV"/>
+			<DA name="subID" bType="VisString64" fc="SV"/>
+			<DA name="d" bType="VisString255" fc="DC"/>
+			<DA name="dU" bType="Unicode255" fc="DC"/>
+			<DA name="dataNs" bType="VisString255" fc="EX">
+				<Val>XIRUI MODEL:2009</Val>
+			</DA>
+		</DOType>
+		<DOType id="CN_INS" cdc="INS">
+			<DA name="stVal" bType="INT32" dchg="true" fc="ST"/>
+			<DA name="q" bType="Quality" qchg="true" fc="ST"/>
+			<DA name="t" bType="Timestamp" fc="ST"/>
+			<DA name="subEna" bType="BOOLEAN" fc="SV"/>
+			<DA name="subVal" bType="INT32" fc="SV"/>
+			<DA name="subQ" bType="Quality" fc="SV"/>
+			<DA name="subID" bType="VisString64" fc="SV"/>
+			<DA name="d" bType="VisString255" fc="DC"/>
+			<DA name="dU" bType="Unicode255" fc="DC"/>
+		</DOType>
+		<DOType id="CN_INS_EX" cdc="INS">
+			<DA name="stVal" bType="INT32" dchg="true" fc="ST"/>
+			<DA name="q" bType="Quality" qchg="true" fc="ST"/>
+			<DA name="t" bType="Timestamp" fc="ST"/>
+			<DA name="subEna" bType="BOOLEAN" fc="SV"/>
+			<DA name="subVal" bType="INT32" fc="SV"/>
+			<DA name="subQ" bType="Quality" fc="SV"/>
+			<DA name="subID" bType="VisString64" fc="SV"/>
+			<DA name="d" bType="VisString255" fc="DC"/>
+			<DA name="dU" bType="Unicode255" fc="DC"/>
+			<DA name="dataNs" bType="VisString255" fc="EX">
+				<Val>XIRUI MODEL:2009</Val>
+			</DA>
+		</DOType>
+		<DOType id="CN_INS_Beh" cdc="INS">
+			<DA name="stVal" bType="Enum" type="Beh" dchg="true" fc="ST"/>
+			<DA name="q" bType="Quality" qchg="true" fc="ST"/>
+			<DA name="t" bType="Timestamp" fc="ST"/>
+			<DA name="d" bType="VisString255" fc="DC"/>
+		</DOType>
+		<DOType id="CN_INS_Health" cdc="INS">
+			<DA name="stVal" bType="Enum" type="Health" dchg="true" fc="ST"/>
+			<DA name="q" bType="Quality" qchg="true" fc="ST"/>
+			<DA name="t" bType="Timestamp" fc="ST"/>
+			<DA name="d" bType="VisString255" fc="DC"/>
+		</DOType>
+		<DOType id="CN_INS_ARST" cdc="INS">
+			<DA name="stVal" bType="Enum" type="AutoRecSt" dchg="true" fc="ST"/>
+			<DA name="q" bType="Quality" qchg="true" fc="ST"/>
+			<DA name="t" bType="Timestamp" fc="ST"/>
+			<DA name="subEna" bType="BOOLEAN" fc="SV"/>
+			<DA name="subVal" bType="Enum" type="AutoRecSt" fc="SV"/>
+			<DA name="subQ" bType="Quality" fc="SV"/>
+			<DA name="subID" bType="VisString64" fc="SV"/>
+			<DA name="d" bType="VisString255" fc="DC"/>
+			<DA name="dU" bType="Unicode255" fc="DC"/>
+		</DOType>
+		<DOType id="CN_INS_CBOpCap" cdc="INS">
+			<DA name="stVal" bType="Enum" type="CBOpCap" dchg="true" fc="ST"/>
+			<DA name="q" bType="Quality" qchg="true" fc="ST"/>
+			<DA name="t" bType="Timestamp" fc="ST"/>
+			<DA name="subEna" bType="BOOLEAN" fc="SV"/>
+			<DA name="subVal" bType="Enum" type="CBOpCap" fc="SV"/>
+			<DA name="subQ" bType="Quality" fc="SV"/>
+			<DA name="subID" bType="VisString64" fc="SV"/>
+			<DA name="d" bType="VisString255" fc="DC"/>
+			<DA name="dU" bType="Unicode255" fc="DC"/>
+		</DOType>
+		<DOType id="CN_INS_SwTyp" cdc="INS">
+			<DA name="stVal" bType="Enum" type="SwTyp" dchg="true" fc="ST"/>
+			<DA name="q" bType="Quality" qchg="true" fc="ST"/>
+			<DA name="t" bType="Timestamp" fc="ST"/>
+			<DA name="subEna" bType="BOOLEAN" fc="SV"/>
+			<DA name="subVal" bType="Enum" type="SwTyp" fc="SV"/>
+			<DA name="subQ" bType="Quality" fc="SV"/>
+			<DA name="subID" bType="VisString64" fc="SV"/>
+			<DA name="d" bType="VisString255" fc="DC"/>
+			<DA name="dU" bType="Unicode255" fc="DC"/>
+		</DOType>
+		<DOType id="CN_INS_SwOpCap" cdc="INS">
+			<DA name="stVal" bType="Enum" type="SwOpCap" dchg="true" fc="ST"/>
+			<DA name="q" bType="Quality" qchg="true" fc="ST"/>
+			<DA name="t" bType="Timestamp" fc="ST"/>
+			<DA name="subEna" bType="BOOLEAN" fc="SV"/>
+			<DA name="subVal" bType="Enum" type="SwOpCap" fc="SV"/>
+			<DA name="subQ" bType="Quality" fc="SV"/>
+			<DA name="subID" bType="VisString64" fc="SV"/>
+			<DA name="d" bType="VisString255" fc="DC"/>
+			<DA name="dU" bType="Unicode255" fc="DC"/>
+		</DOType>
+		<DOType id="CN_INS_FltLoop" cdc="INS">
+			<DA name="stVal" bType="Enum" type="FltLoop" dchg="true" fc="ST"/>
+			<DA name="q" bType="Quality" qchg="true" fc="ST"/>
+			<DA name="t" bType="Timestamp" fc="ST"/>
+			<DA name="subEna" bType="BOOLEAN" fc="SV"/>
+			<DA name="subVal" bType="Enum" type="FltLoop" fc="SV"/>
+			<DA name="subQ" bType="Quality" fc="SV"/>
+			<DA name="subID" bType="VisString64" fc="SV"/>
+			<DA name="d" bType="VisString255" fc="DC"/>
+			<DA name="dU" bType="Unicode255" fc="DC"/>
+		</DOType>
+		<DOType id="CN_ACT" cdc="ACT">
+			<DA name="general" bType="BOOLEAN" dchg="true" fc="ST"/>
+			<DA name="q" bType="Quality" qchg="true" fc="ST"/>
+			<DA name="t" bType="Timestamp" fc="ST"/>
+			<DA name="d" bType="VisString255" fc="DC"/>
+			<DA name="dU" bType="Unicode255" fc="DC"/>
+		</DOType>
+		<DOType id="CN_ACT_EX" cdc="ACT">
+			<DA name="general" bType="BOOLEAN" dchg="true" fc="ST"/>
+			<DA name="q" bType="Quality" qchg="true" fc="ST"/>
+			<DA name="t" bType="Timestamp" fc="ST"/>
+			<DA name="d" bType="VisString255" fc="DC"/>
+			<DA name="dU" bType="Unicode255" fc="DC"/>
+			<DA name="dataNs" bType="VisString255" fc="EX">
+				<Val>XIRUI MODEL:2009</Val>
+			</DA>
+		</DOType>
+		<DOType id="CN_ACD" cdc="ACD">
+			<DA name="general" bType="BOOLEAN" dchg="true" fc="ST"/>
+			<DA name="dirGeneral" bType="Enum" type="dir" dchg="true" fc="ST"/>
+			<DA name="q" bType="Quality" qchg="true" fc="ST"/>
+			<DA name="t" bType="Timestamp" fc="ST"/>
+			<DA name="d" bType="VisString255" fc="DC"/>
+			<DA name="dU" bType="Unicode255" fc="DC"/>
+		</DOType>
+		<DOType id="CN_ACD_EX" cdc="ACD">
+			<DA name="general" bType="BOOLEAN" dchg="true" fc="ST"/>
+			<DA name="dirGeneral" bType="Enum" type="dir" dchg="true" fc="ST"/>
+			<DA name="q" bType="Quality" qchg="true" fc="ST"/>
+			<DA name="t" bType="Timestamp" fc="ST"/>
+			<DA name="d" bType="VisString255" fc="DC"/>
+			<DA name="dU" bType="Unicode255" fc="DC"/>
+			<DA name="dataNs" bType="VisString255" fc="EX">
+				<Val>XIRUI MODEL:2009</Val>
+			</DA>
+		</DOType>
+		<DOType id="CN_MV" cdc="MV">
+			<DA name="mag" bType="Struct" type="CN_AnalogueValue" dchg="true" fc="MX"/>
+			<DA name="q" bType="Quality" qchg="true" fc="MX"/>
+			<DA name="t" bType="Timestamp" fc="MX"/>
+			<DA name="subEna" bType="BOOLEAN" fc="SV"/>
+			<DA name="subMag" bType="Struct" type="CN_AnalogueValue" fc="SV"/>
+			<DA name="subQ" bType="Quality" fc="SV"/>
+			<DA name="subID" bType="VisString64" fc="SV"/>
+			<DA name="units" bType="Struct" type="CN_units" fc="CF"/>
+			<DA name="d" bType="VisString255" fc="DC"/>
+			<DA name="dU" bType="Unicode255" fc="DC"/>
+		</DOType>
+		<DOType id="CN_MV_EX" cdc="MV">
+			<DA name="mag" bType="Struct" type="CN_AnalogueValue" dchg="true" fc="MX"/>
+			<DA name="q" bType="Quality" qchg="true" fc="MX"/>
+			<DA name="t" bType="Timestamp" fc="MX"/>
+			<DA name="subEna" bType="BOOLEAN" fc="SV"/>
+			<DA name="subMag" bType="Struct" type="CN_AnalogueValue" fc="SV"/>
+			<DA name="subQ" bType="Quality" fc="SV"/>
+			<DA name="subID" bType="VisString64" fc="SV"/>
+			<DA name="units" bType="Struct" type="CN_units" fc="CF"/>
+			<DA name="d" bType="VisString255" fc="DC"/>
+			<DA name="dU" bType="Unicode255" fc="DC"/>
+			<DA name="dataNs" bType="VisString255" fc="EX">
+				<Val>XIRUI MODEL:2009</Val>
+			</DA>
+		</DOType>
+		<DOType id="CN_CMV" cdc="CMV">
+			<DA name="cVal" bType="Struct" type="CN_Vector" dchg="true" fc="MX"/>
+			<DA name="q" bType="Quality" qchg="true" fc="MX"/>
+			<DA name="t" bType="Timestamp" fc="MX"/>
+			<DA name="subEna" bType="BOOLEAN" fc="SV"/>
+			<DA name="subCVal" bType="Struct" type="CN_Vector" fc="SV"/>
+			<DA name="subQ" bType="Quality" fc="SV"/>
+			<DA name="subID" bType="VisString64" fc="SV"/>
+			<DA name="units" bType="Struct" type="CN_units" fc="CF"/>
+			<DA name="d" bType="VisString255" fc="DC"/>
+			<DA name="dU" bType="Unicode255" fc="DC"/>
+		</DOType>
+		<DOType id="CN_CMV_EX" cdc="CMV">
+			<DA name="cVal" bType="Struct" type="CN_Vector" dchg="true" fc="MX"/>
+			<DA name="q" bType="Quality" qchg="true" fc="MX"/>
+			<DA name="t" bType="Timestamp" fc="MX"/>
+			<DA name="subEna" bType="BOOLEAN" fc="SV"/>
+			<DA name="subCVal" bType="Struct" type="CN_Vector" fc="SV"/>
+			<DA name="subQ" bType="Quality" fc="SV"/>
+			<DA name="subID" bType="VisString64" fc="SV"/>
+			<DA name="units" bType="Struct" type="CN_units" fc="CF"/>
+			<DA name="d" bType="VisString255" fc="DC"/>
+			<DA name="dU" bType="Unicode255" fc="DC"/>
+			<DA name="dataNs" bType="VisString255" fc="EX">
+				<Val>XIRUI MODEL:2009</Val>
+			</DA>
+		</DOType>
+		<DOType id="CN_WYE" cdc="WYE">
+			<SDO name="phsA" type="CN_CMV"/>
+			<SDO name="phsB" type="CN_CMV"/>
+			<SDO name="phsC" type="CN_CMV"/>
+			<SDO name="neut" type="CN_CMV"/>
+			<DA name="angRef" bType="Enum" type="angid" fc="CF"/>
+			<DA name="d" bType="VisString255" fc="DC"/>
+			<DA name="dU" bType="Unicode255" fc="DC"/>
+		</DOType>
+		<DOType id="CN_WYE_EX" cdc="WYE">
+			<SDO name="phsA" type="CN_CMV"/>
+			<SDO name="phsB" type="CN_CMV"/>
+			<SDO name="phsC" type="CN_CMV"/>
+			<SDO name="neut" type="CN_CMV"/>
+			<DA name="angRef" bType="Enum" type="angid" fc="CF"/>
+			<DA name="d" bType="VisString255" fc="DC"/>
+			<DA name="dU" bType="Unicode255" fc="DC"/>
+			<DA name="dataNs" bType="VisString255" fc="EX">
+				<Val>XIRUI MODEL:2009</Val>
+			</DA>
+		</DOType>
+		<DOType id="CN_DEL" cdc="DEL">
+			<SDO name="phsAB" type="CN_CMV"/>
+			<SDO name="phsBC" type="CN_CMV"/>
+			<SDO name="phsCA" type="CN_CMV"/>
+			<DA name="angRef" bType="Enum" type="angid" fc="CF"/>
+			<DA name="d" bType="VisString255" fc="DC"/>
+			<DA name="dU" bType="Unicode255" fc="DC"/>
+		</DOType>
+		<DOType id="CN_DEL_EX" cdc="DEL">
+			<SDO name="phsAB" type="CN_CMV"/>
+			<SDO name="phsBC" type="CN_CMV"/>
+			<SDO name="phsCA" type="CN_CMV"/>
+			<DA name="angRef" bType="Enum" type="angid" fc="CF"/>
+			<DA name="d" bType="VisString255" fc="DC"/>
+			<DA name="dU" bType="Unicode255" fc="DC"/>
+			<DA name="dataNs" bType="VisString255" fc="EX">
+				<Val>XIRUI MODEL:2009</Val>
+			</DA>
+		</DOType>
+		<DOType id="CN_SEQ" cdc="SEQ">
+			<SDO type="CN_CMV" name="c1"/>
+			<SDO type="CN_CMV" name="c2"/>
+			<SDO type="CN_CMV" name="c3"/>
+			<DA bType="Enum" type="seqT" name="seqT" fc="MX"/>
+			<DA bType="Enum" type="phsid" name="phsRef" fc="CF"/>
+		</DOType>
+		<DOType id="CN_SPC" cdc="SPC">
+			<DA name="SBO" bType="VisString65" fc="CO"/>
+			<DA name="SBOw" bType="Struct" type="CN_SBOw_Oper_SDPC" fc="CO"/>
+			<DA name="Oper" bType="Struct" type="CN_SBOw_Oper_SDPC" fc="CO"/>
+			<DA name="Cancel" bType="Struct" type="CN_Cancel_SDPC" fc="CO"/>
+			<DA name="stVal" bType="BOOLEAN" dchg="true" fc="ST"/>
+			<DA name="q" bType="Quality" qchg="true" fc="ST"/>
+			<DA name="t" bType="Timestamp" fc="ST"/>
+			<DA name="ctlModel" bType="Enum" type="ctlModel" fc="CF"/>
+			<DA name="d" bType="VisString255" fc="DC"/>
+			<DA name="dU" bType="Unicode255" fc="DC"/>
+		</DOType>
+		<DOType id="CN_SPC_EX" cdc="SPC">
+			<DA name="SBO" bType="VisString65" fc="CO"/>
+			<DA name="SBOw" bType="Struct" type="CN_SBOw_Oper_SDPC" fc="CO"/>
+			<DA name="Oper" bType="Struct" type="CN_SBOw_Oper_SDPC" fc="CO"/>
+			<DA name="Cancel" bType="Struct" type="CN_Cancel_SDPC" fc="CO"/>
+			<DA name="stVal" bType="BOOLEAN" dchg="true" fc="ST"/>
+			<DA name="q" bType="Quality" qchg="true" fc="ST"/>
+			<DA name="t" bType="Timestamp" fc="ST"/>
+			<DA name="ctlModel" bType="Enum" type="ctlModel" fc="CF"/>
+			<DA name="d" bType="VisString255" fc="DC"/>
+			<DA name="dU" bType="Unicode255" fc="DC"/>
+			<DA name="dataNs" bType="VisString255" fc="EX">
+				<Val>XIRUI MODEL:2009</Val>
+			</DA>
+		</DOType>
+		<DOType id="CN_DPC" cdc="DPC">
+			<DA name="SBO" bType="VisString65" fc="CO"/>
+			<DA name="SBOw" bType="Struct" type="CN_SBOw_Oper_SDPC" fc="CO"/>
+			<DA name="Oper" bType="Struct" type="CN_SBOw_Oper_SDPC" fc="CO"/>
+			<DA name="Cancel" bType="Struct" type="CN_Cancel_SDPC" fc="CO"/>
+			<DA name="stVal" bType="Dbpos" dchg="true" fc="ST"/>
+			<DA name="q" bType="Quality" qchg="true" fc="ST"/>
+			<DA name="t" bType="Timestamp" fc="ST"/>
+			<DA name="ctlModel" bType="Enum" type="ctlModel" fc="CF"/>
+			<DA name="d" bType="VisString255" fc="DC"/>
+			<DA name="dU" bType="Unicode255" fc="DC"/>
+		</DOType>
+		<DOType id="CN_INC" cdc="INC">
+			<DA name="SBOw" bType="Struct" type="CN_SBOw_Oper_INC" fc="CO"/>
+			<DA name="Oper" bType="Struct" type="CN_SBOw_Oper_INC" fc="CO"/>
+			<DA name="Cancel" bType="Struct" type="CN_Cancel_INC" fc="CO"/>
+			<DA name="stVal" bType="INT32" type="" dchg="true" fc="ST"/>
+			<DA name="q" bType="Quality" qchg="true" fc="ST"/>
+			<DA name="t" bType="Timestamp" fc="ST"/>
+			<DA name="ctlModel" bType="Enum" type="ctlModel" fc="CF"/>
+			<DA name="dU" bType="Unicode255" fc="DC"/>
+		</DOType>
+		<DOType id="CN_INC_EX" cdc="INC">
+			<DA name="SBOw" bType="Struct" type="CN_SBOw_Oper_INC" fc="CO"/>
+			<DA name="Oper" bType="Struct" type="CN_SBOw_Oper_INC" fc="CO"/>
+			<DA name="Cancel" bType="Struct" type="CN_Cancel_INC" fc="CO"/>
+			<DA name="stVal" bType="INT32" type="" dchg="true" fc="ST"/>
+			<DA name="q" bType="Quality" qchg="true" fc="ST"/>
+			<DA name="t" bType="Timestamp" fc="ST"/>
+			<DA name="ctlModel" bType="Enum" type="ctlModel" fc="CF"/>
+			<DA name="dU" bType="Unicode255" fc="DC"/>
+			<DA name="dataNs" bType="VisString255" fc="EX">
+				<Val>XIRUI MODEL:2009</Val>
+			</DA>
+		</DOType>
+		<DOType id="CN_INC_Mod" cdc="INC">
+			<DA name="stVal" bType="Enum" type="Mod" dchg="true" fc="ST"/>
+			<DA name="q" bType="Quality" qchg="true" fc="ST"/>
+			<DA name="t" bType="Timestamp" fc="ST"/>
+			<DA name="ctlModel" bType="Enum" type="ctlModel" fc="CF">
+				<Val>0</Val>
+			</DA>
+		</DOType>
+		<DOType id="CN_BSC" cdc="BSC">
+			<DA name="SBO" bType="VisString65" fc="CO"/>
+			<DA name="SBOw" bType="Struct" type="CN_SBOw_Oper_BSC" fc="CO"/>
+			<DA name="Oper" bType="Struct" type="CN_SBOw_Oper_BSC" fc="CO"/>
+			<DA name="Cancel" bType="Struct" type="CN_Cancel_BSC" fc="CO"/>
+			<DA name="valWTr" bType="Struct" type="CN_ValWithTrans" dchg="true" fc="ST"/>
+			<DA name="q" bType="Quality" qchg="true" fc="ST"/>
+			<DA name="t" bType="Timestamp" fc="ST"/>
+			<DA name="persistent" bType="BOOLEAN" fc="CF"/>
+			<DA name="ctlModel" bType="Enum" type="ctlModel" fc="CF"/>
+			<DA name="d" bType="VisString255" fc="DC"/>
+			<DA name="dU" bType="Unicode255" fc="DC"/>
+		</DOType>
+		<DOType id="CN_BSC_EX" cdc="BSC">
+			<DA name="SBO" bType="VisString65" fc="CO"/>
+			<DA name="SBOw" bType="Struct" type="CN_SBOw_Oper_BSC" fc="CO"/>
+			<DA name="Oper" bType="Struct" type="CN_SBOw_Oper_BSC" fc="CO"/>
+			<DA name="Cancel" bType="Struct" type="CN_Cancel_BSC" fc="CO"/>
+			<DA name="valWTr" bType="Struct" type="CN_ValWithTrans" dchg="true" fc="ST"/>
+			<DA name="q" bType="Quality" qchg="true" fc="ST"/>
+			<DA name="t" bType="Timestamp" fc="ST"/>
+			<DA name="persistent" bType="BOOLEAN" fc="CF"/>
+			<DA name="ctlModel" bType="Enum" type="ctlModel" fc="CF"/>
+			<DA name="d" bType="VisString255" fc="DC"/>
+			<DA name="dU" bType="Unicode255" fc="DC"/>
+			<DA name="dataNs" bType="VisString255" fc="EX">
+				<Val>XIRUI MODEL:2009</Val>
+			</DA>
+		</DOType>
+		<DOType id="CN_SPG_SG" cdc="SPG">
+			<DA name="setVal" bType="BOOLEAN" fc="SG"/>
+			<DA name="d" bType="VisString255" fc="DC"/>
+			<DA name="dU" bType="Unicode255" fc="DC"/>
+		</DOType>
+		<DOType id="CN_SPG_SG_EX" cdc="SPG">
+			<DA name="setVal" bType="BOOLEAN" fc="SG"/>
+			<DA name="d" bType="VisString255" fc="DC"/>
+			<DA name="dU" bType="Unicode255" fc="DC"/>
+			<DA name="dataNs" bType="VisString255" fc="EX">
+				<Val>XIRUI MODEL:2009</Val>
+			</DA>
+		</DOType>
+		<DOType id="CN_SPG_SP" cdc="SPG">
+			<DA name="setVal" bType="BOOLEAN" fc="SP"/>
+			<DA name="d" bType="VisString255" fc="DC"/>
+			<DA name="dU" bType="Unicode255" fc="DC"/>
+		</DOType>
+		<DOType id="CN_SPG_SP_EX" cdc="SPG">
+			<DA name="setVal" bType="BOOLEAN" fc="SP"/>
+			<DA name="d" bType="VisString255" fc="DC"/>
+			<DA name="dU" bType="Unicode255" fc="DC"/>
+			<DA name="dataNs" bType="VisString255" fc="EX">
+				<Val>XIRUI MODEL:2009</Val>
+			</DA>
+		</DOType>
+		<DOType id="CN_ING_SG" cdc="ING">
+			<DA name="setVal" bType="INT32" fc="SG"/>
+			<DA name="d" bType="VisString255" fc="DC"/>
+			<DA name="dU" bType="Unicode255" fc="DC"/>
+		</DOType>
+		<DOType id="CN_ING_SG_EX" cdc="ING">
+			<DA name="setVal" bType="INT32" fc="SG"/>
+			<DA name="d" bType="VisString255" fc="DC"/>
+			<DA name="dU" bType="Unicode255" fc="DC"/>
+			<DA name="dataNs" bType="VisString255" fc="EX">
+				<Val>XIRUI MODEL:2009</Val>
+			</DA>
+		</DOType>
+		<DOType id="CN_ING_SP" cdc="ING">
+			<DA name="setVal" bType="INT32" fc="SP"/>
+			<DA name="d" bType="VisString255" fc="DC"/>
+			<DA name="dU" bType="Unicode255" fc="DC"/>
+		</DOType>
+		<DOType id="CN_ING_SP_EX" cdc="ING">
+			<DA name="setVal" bType="INT32" fc="SP"/>
+			<DA name="d" bType="VisString255" fc="DC"/>
+			<DA name="dU" bType="Unicode255" fc="DC"/>
+			<DA name="dataNs" bType="VisString255" fc="EX">
+				<Val>XIRUI MODEL:2009</Val>
+			</DA>
+		</DOType>
+		<DOType id="CN_ASG_SG" cdc="ASG">
+			<DA name="setMag" bType="Struct" type="CN_AnalogueValue" fc="SG"/>
+			<DA name="units" bType="Struct" type="CN_units" fc="CF"/>
+			<DA name="d" bType="VisString255" fc="DC"/>
+			<DA name="dU" bType="Unicode255" fc="DC"/>
+		</DOType>
+		<DOType id="CN_ASG_SG_EX" cdc="ASG">
+			<DA name="setMag" bType="Struct" type="CN_AnalogueValue" fc="SG"/>
+			<DA name="units" bType="Struct" type="CN_units" fc="CF"/>
+			<DA name="d" bType="VisString255" fc="DC"/>
+			<DA name="dU" bType="Unicode255" fc="DC"/>
+			<DA name="dataNs" bType="VisString255" fc="EX">
+				<Val>XIRUI MODEL:2009</Val>
+			</DA>
+		</DOType>
+		<DOType id="CN_ASG_SP" cdc="ASG">
+			<DA name="setMag" bType="Struct" type="CN_AnalogueValue" fc="SP"/>
+			<DA name="units" bType="Struct" type="CN_units" fc="CF"/>
+			<DA name="d" bType="VisString255" fc="DC"/>
+			<DA name="dU" bType="Unicode255" fc="DC"/>
+		</DOType>
+		<DOType id="CN_ASG_SP_EX" cdc="ASG">
+			<DA name="setMag" bType="Struct" type="CN_AnalogueValue" fc="SP"/>
+			<DA name="units" bType="Struct" type="CN_units" fc="CF"/>
+			<DA name="d" bType="VisString255" fc="DC"/>
+			<DA name="dU" bType="Unicode255" fc="DC"/>
+			<DA name="dataNs" bType="VisString255" fc="EX">
+				<Val>XIRUI MODEL:2009</Val>
+			</DA>
+		</DOType>
+		<DOType id="CN_DPL" cdc="DPL">
+			<DA name="vendor" bType="VisString255" fc="DC">
+				<Val>xi'an xirui control tek co.ltd</Val>
+			</DA>
+			<DA name="hwRev" bType="VisString255" fc="DC">
+				<Val>Version 2.0</Val>
+			</DA>
+			<DA name="swRev" bType="VisString255" fc="DC">
+				<Val>Version 4.0</Val>
+			</DA>
+			<DA name="serNum" bType="VisString255" fc="DC"/>
+			<DA name="model" bType="VisString255" fc="DC"/>
+			<DA name="location" bType="VisString255" fc="DC"/>
+		</DOType>
+		<DOType id="CN_LPL" cdc="LPL">
+			<DA name="vendor" bType="VisString255" fc="DC">
+				<Val>xi'an xirui control tek co.ltd</Val>
+			</DA>
+			<DA name="swRev" bType="VisString255" fc="DC">
+				<Val>Version 4.0</Val>
+			</DA>
+			<DA name="d" bType="VisString255" fc="DC">
+				<Val>nameplate</Val>
+			</DA>
+			<DA name="dU" bType="Unicode255" fc="DC">
+				<Val>铭牌</Val>
+			</DA>
+		</DOType>
+		<DOType id="CN_LPL_LN0" cdc="LPL">
+			<DA name="vendor" bType="VisString255" fc="DC">
+				<Val>xi'an xirui control tek co.ltd</Val>
+			</DA>
+			<DA name="swRev" bType="VisString255" fc="DC">
+				<Val>Version 4.0</Val>
+			</DA>
+			<DA name="d" bType="VisString255" fc="DC">
+				<Val>nameplate</Val>
+			</DA>
+			<DA name="dU" bType="Unicode255" fc="DC">
+				<Val>铭牌</Val>
+			</DA>
+			<DA name="configRev" bType="VisString255" fc="DC">
+				<Val>Version 4.0</Val>
+			</DA>
+			<DA name="ldNs" bType="VisString255" fc="EX">
+				<Val>IEC 61850-7-4:2003</Val>
+			</DA>
+		</DOType>
+		<DOType id="CN_LPL_EX" cdc="LPL">
+			<DA name="vendor" bType="VisString255" fc="DC">
+				<Val>xi'an xirui control tek co.ltd</Val>
+			</DA>
+			<DA name="swRev" bType="VisString255" fc="DC">
+				<Val>Version 4.0</Val>
+			</DA>
+			<DA name="d" bType="VisString255" fc="DC">
+				<Val>nameplate</Val>
+			</DA>
+			<DA name="dU" bType="Unicode255" fc="DC">
+				<Val>铭牌</Val>
+			</DA>
+			<DA name="lnNs" bType="VisString255" fc="EX">
+				<Val>XIRUI MODEL:2009</Val>
+			</DA>
+		</DOType>
+		<DOType id="CN_SAV" cdc="SAV">
+			<DA name="instMag" bType="Struct" type="CN_AnalogueValue_I" fc="MX"/>
+			<DA name="q" bType="Quality" qchg="true" fc="MX"/>
+			<DA name="d" bType="VisString255" fc="DC"/>
+			<DA name="dU" bType="Unicode255" fc="DC"/>
+		</DOType>
+		<DAType id="CN_AnalogueValue">
+			<BDA name="f" bType="FLOAT32"/>
+		</DAType>
+		<DAType id="CN_AnalogueValue_I">
+			<BDA name="i" bType="INT32"/>
+		</DAType>
+		<DAType id="CN_RangeConfig">
+			<BDA name="hhLim" bType="Struct" type="CN_AnalogueValue"/>
+			<BDA name="hLim" bType="Struct" type="CN_AnalogueValue"/>
+			<BDA name="lLim" bType="Struct" type="CN_AnalogueValue"/>
+			<BDA name="llLim" bType="Struct" type="CN_AnalogueValue"/>
+			<BDA name="min" bType="Struct" type="CN_AnalogueValue"/>
+			<BDA name="max" bType="Struct" type="CN_AnalogueValue"/>
+		</DAType>
+		<DAType id="CN_Vector">
+			<BDA name="mag" bType="Struct" type="CN_AnalogueValue"/>
+			<BDA name="ang" bType="Struct" type="CN_AnalogueValue"/>
+		</DAType>
+		<DAType id="CN_SBOw_Oper_SDPC">
+			<BDA name="ctlVal" bType="BOOLEAN"/>
+			<BDA name="origin" bType="Struct" type="CN_Originator"/>
+			<BDA name="ctlNum" bType="INT8U"/>
+			<BDA name="T" bType="Timestamp"/>
+			<BDA name="Test" bType="BOOLEAN"/>
+			<BDA name="Check" bType="Check"/>
+		</DAType>
+		<DAType id="CN_Cancel_SDPC">
+			<BDA name="ctlVal" bType="BOOLEAN"/>
+			<BDA name="origin" bType="Struct" type="CN_Originator"/>
+			<BDA name="ctlNum" bType="INT8U"/>
+			<BDA name="T" bType="Timestamp"/>
+			<BDA name="Test" bType="BOOLEAN"/>
+		</DAType>
+		<DAType id="CN_SBOw_Oper_INC">
+			<BDA name="ctlVal" bType="INT32"/>
+			<BDA name="origin" bType="Struct" type="CN_Originator"/>
+			<BDA name="ctlNum" bType="INT8U"/>
+			<BDA name="T" bType="Timestamp"/>
+			<BDA name="Test" bType="BOOLEAN"/>
+			<BDA name="Check" bType="Check"/>
+		</DAType>
+		<DAType id="CN_Cancel_INC">
+			<BDA name="ctlVal" bType="INT32"/>
+			<BDA name="origin" bType="Struct" type="CN_Originator"/>
+			<BDA name="ctlNum" bType="INT8U"/>
+			<BDA name="T" bType="Timestamp"/>
+			<BDA name="Test" bType="BOOLEAN"/>
+		</DAType>
+		<DAType id="CN_SBOw_Oper_BSC">
+			<BDA name="ctlVal" bType="Tcmd"/>
+			<BDA name="origin" bType="Struct" type="CN_Originator"/>
+			<BDA name="ctlNum" bType="INT8U"/>
+			<BDA name="T" bType="Timestamp"/>
+			<BDA name="Test" bType="BOOLEAN"/>
+			<BDA name="Check" bType="Check"/>
+		</DAType>
+		<DAType id="CN_Cancel_BSC">
+			<BDA name="ctlVal" bType="Tcmd"/>
+			<BDA name="origin" bType="Struct" type="CN_Originator"/>
+			<BDA name="ctlNum" bType="INT8U"/>
+			<BDA name="T" bType="Timestamp"/>
+			<BDA name="Test" bType="BOOLEAN"/>
+		</DAType>
+		<DAType id="CN_Originator">
+			<BDA name="orCat" bType="Enum" type="orCategory"/>
+			<BDA name="orIdent" bType="Octet64"/>
+		</DAType>
+		<DAType id="CN_ValWithTrans">
+			<BDA name="posVal" bType="INT8"/>
+		</DAType>
+		<DAType id="CN_ScaledValueConfig">
+			<BDA name="scaleFactor" bType="FLOAT32"/>
+			<BDA name="offset" bType="FLOAT32"/>
+		</DAType>
+		<DAType id="CN_PulseConfig">
+			<BDA name="cmdQual" bType="Enum" type="PulseConfigCmdQual"/>
+			<BDA name="onDur" bType="INT32U"/>
+			<BDA name="offDur" bType="INT32U"/>
+			<BDA name="numPls" bType="INT32U"/>
+		</DAType>
+		<DAType id="CN_units">
+			<BDA bType="Enum" name="SIUnit" type="SIUnit"/>
+			<BDA bType="Enum" name="multiplier" type="multiplier"/>
+		</DAType>
+		<EnumType id="PulseConfigCmdQual">
+			<EnumVal ord="0">pulse</EnumVal>
+			<EnumVal ord="1">persistent</EnumVal>
+		</EnumType>
+		<EnumType id="AutoRecSt">
+			<EnumVal ord="1">Ready</EnumVal>
+			<EnumVal ord="2">InProgress</EnumVal>
+			<EnumVal ord="3">Successful</EnumVal>
+		</EnumType>
+		<EnumType id="ctlModel">
+			<EnumVal ord="0">status-only</EnumVal>
+			<EnumVal ord="1">direct-with-normal-security</EnumVal>
+			<EnumVal ord="2">sbo-with-normal-security</EnumVal>
+			<EnumVal ord="3">direct-with-enhanced-security</EnumVal>
+			<EnumVal ord="4">sbo-with-enhanced-security</EnumVal>
+		</EnumType>
+		<EnumType id="sboClass">
+			<EnumVal ord="0">operate-once</EnumVal>
+			<EnumVal ord="1">operate-many</EnumVal>
+		</EnumType>
+		<EnumType id="orCategory">
+			<EnumVal ord="0">not-supported</EnumVal>
+			<EnumVal ord="1">bay-control</EnumVal>
+			<EnumVal ord="2">station-control</EnumVal>
+			<EnumVal ord="3">remote-control</EnumVal>
+			<EnumVal ord="4">automatic-bay</EnumVal>
+			<EnumVal ord="5">automatic-station</EnumVal>
+			<EnumVal ord="6">automatic-remote</EnumVal>
+			<EnumVal ord="7">maintenance</EnumVal>
+			<EnumVal ord="8">process</EnumVal>
+		</EnumType>
+		<EnumType id="angidCMV">
+			<EnumVal ord="0">V</EnumVal>
+			<EnumVal ord="1">A</EnumVal>
+			<EnumVal ord="2">other</EnumVal>
+		</EnumType>
+		<EnumType id="angid">
+			<EnumVal ord="0">Va</EnumVal>
+			<EnumVal ord="1">Vb</EnumVal>
+			<EnumVal ord="2">Vc</EnumVal>
+			<EnumVal ord="3">Aa</EnumVal>
+			<EnumVal ord="4">Ab</EnumVal>
+			<EnumVal ord="5">Ac</EnumVal>
+			<EnumVal ord="6">Vab</EnumVal>
+			<EnumVal ord="7">Vbc</EnumVal>
+			<EnumVal ord="8">Vca</EnumVal>
+			<EnumVal ord="9">Vother</EnumVal>
+			<EnumVal ord="10">Aother</EnumVal>
+		</EnumType>
+		<EnumType id="multiplier">
+			<EnumVal ord="-24">y</EnumVal>
+			<EnumVal ord="-21">z</EnumVal>
+			<EnumVal ord="-18">a</EnumVal>
+			<EnumVal ord="-15">f</EnumVal>
+			<EnumVal ord="-12">p</EnumVal>
+			<EnumVal ord="-9">n</EnumVal>
+			<EnumVal ord="-6">μ</EnumVal>
+			<EnumVal ord="-3">m</EnumVal>
+			<EnumVal ord="-2">c</EnumVal>
+			<EnumVal ord="-1">d</EnumVal>
+			<EnumVal ord="0"></EnumVal>
+			<EnumVal ord="1">da</EnumVal>
+			<EnumVal ord="2">h</EnumVal>
+			<EnumVal ord="3">k</EnumVal>
+			<EnumVal ord="6">M</EnumVal>
+			<EnumVal ord="9">G</EnumVal>
+			<EnumVal ord="12">T</EnumVal>
+			<EnumVal ord="15">P</EnumVal>
+			<EnumVal ord="18">E</EnumVal>
+			<EnumVal ord="21">Z</EnumVal>
+			<EnumVal ord="24">Y</EnumVal>
+		</EnumType>
+		<EnumType id="SIUnit">
+			<EnumVal ord="1"></EnumVal>
+			<EnumVal ord="2">m</EnumVal>
+			<EnumVal ord="3">kg</EnumVal>
+			<EnumVal ord="4">s</EnumVal>
+			<EnumVal ord="5">A</EnumVal>
+			<EnumVal ord="6">K</EnumVal>
+			<EnumVal ord="7">mol</EnumVal>
+			<EnumVal ord="8">cd</EnumVal>
+			<EnumVal ord="9">deg</EnumVal>
+			<EnumVal ord="10">rad</EnumVal>
+			<EnumVal ord="11">sr</EnumVal>
+			<EnumVal ord="21">Gy</EnumVal>
+			<EnumVal ord="22">q</EnumVal>
+			<EnumVal ord="23">°C</EnumVal>
+			<EnumVal ord="24">Sv</EnumVal>
+			<EnumVal ord="25">F</EnumVal>
+			<EnumVal ord="26">C</EnumVal>
+			<EnumVal ord="27">S</EnumVal>
+			<EnumVal ord="28">H</EnumVal>
+			<EnumVal ord="29">V</EnumVal>
+			<EnumVal ord="30">ohm</EnumVal>
+			<EnumVal ord="31">J</EnumVal>
+			<EnumVal ord="32">N</EnumVal>
+			<EnumVal ord="33">Hz</EnumVal>
+			<EnumVal ord="34">lx</EnumVal>
+			<EnumVal ord="35">Lm</EnumVal>
+			<EnumVal ord="36">Wb</EnumVal>
+			<EnumVal ord="37">T</EnumVal>
+			<EnumVal ord="38">W</EnumVal>
+			<EnumVal ord="39">Pa</EnumVal>
+			<EnumVal ord="41">m2</EnumVal>
+			<EnumVal ord="42">m3</EnumVal>
+			<EnumVal ord="43">m/s</EnumVal>
+			<EnumVal ord="44">m/s2</EnumVal>
+			<EnumVal ord="45">m3/s</EnumVal>
+			<EnumVal ord="46">m/m3</EnumVal>
+			<EnumVal ord="47">M</EnumVal>
+			<EnumVal ord="48">kg/m3</EnumVal>
+			<EnumVal ord="49">m2/s</EnumVal>
+			<EnumVal ord="50">W/m K</EnumVal>
+			<EnumVal ord="51">J/K</EnumVal>
+			<EnumVal ord="52">ppm</EnumVal>
+			<EnumVal ord="53">1/s</EnumVal>
+			<EnumVal ord="54">rad/s</EnumVal>
+			<EnumVal ord="61">VA</EnumVal>
+			<EnumVal ord="62">W</EnumVal>
+			<EnumVal ord="63">VAr</EnumVal>
+			<EnumVal ord="64">theta</EnumVal>
+			<EnumVal ord="65">cos(theta)</EnumVal>
+			<EnumVal ord="66">Vs</EnumVal>
+			<EnumVal ord="67">V2</EnumVal>
+			<EnumVal ord="68">As</EnumVal>
+			<EnumVal ord="69">A2</EnumVal>
+			<EnumVal ord="70">A2t</EnumVal>
+			<EnumVal ord="71">VAh</EnumVal>
+			<EnumVal ord="72">Wh</EnumVal>
+			<EnumVal ord="73">VArh</EnumVal>
+			<EnumVal ord="74">V/Hz</EnumVal>
+		</EnumType>
+		<EnumType id="dir">
+			<EnumVal ord="0">unknown</EnumVal>
+			<EnumVal ord="1">forward</EnumVal>
+			<EnumVal ord="2">backward</EnumVal>
+			<EnumVal ord="3">both</EnumVal>
+		</EnumType>
+		<EnumType id="Dbpos">
+			<EnumVal ord="0">intermediate</EnumVal>
+			<EnumVal ord="1">off</EnumVal>
+			<EnumVal ord="2">on</EnumVal>
+			<EnumVal ord="3">bad</EnumVal>
+		</EnumType>
+		<EnumType id="Tcmd">
+			<EnumVal ord="0">stop</EnumVal>
+			<EnumVal ord="1">lower</EnumVal>
+			<EnumVal ord="2">higher</EnumVal>
+			<EnumVal ord="3">reserved</EnumVal>
+		</EnumType>
+		<EnumType id="Beh">
+			<EnumVal ord="1">on</EnumVal>
+			<EnumVal ord="2">blocked</EnumVal>
+			<EnumVal ord="3">test</EnumVal>
+			<EnumVal ord="4">test/blocked</EnumVal>
+			<EnumVal ord="5">off</EnumVal>
+		</EnumType>
+		<EnumType id="Mod">
+			<EnumVal ord="1">on</EnumVal>
+			<EnumVal ord="2">blocked</EnumVal>
+			<EnumVal ord="3">test</EnumVal>
+			<EnumVal ord="4">test/blocked</EnumVal>
+			<EnumVal ord="5">off</EnumVal>
+		</EnumType>
+		<EnumType id="Health">
+			<EnumVal ord="1">Ok</EnumVal>
+			<EnumVal ord="2">Warning</EnumVal>
+			<EnumVal ord="3">Alarm</EnumVal>
+		</EnumType>
+		<EnumType id="CBOpCap">
+			<EnumVal ord="1">None</EnumVal>
+			<EnumVal ord="2">Open</EnumVal>
+			<EnumVal ord="3">Close-Open</EnumVal>
+			<EnumVal ord="4">Open-Close-Open</EnumVal>
+			<EnumVal ord="5">Close-Open-Close-Open</EnumVal>
+		</EnumType>
+		<EnumType id="SwOpCap">
+			<EnumVal ord="1">None</EnumVal>
+			<EnumVal ord="2">Open</EnumVal>
+			<EnumVal ord="3">Close</EnumVal>
+			<EnumVal ord="4">Open and Close</EnumVal>
+		</EnumType>
+		<EnumType id="SwTyp">
+			<EnumVal ord="1">Load Break</EnumVal>
+			<EnumVal ord="2">Disconnector</EnumVal>
+			<EnumVal ord="3">Earthing Switch</EnumVal>
+			<EnumVal ord="4">High Speed Earthing Switch</EnumVal>
+		</EnumType>
+		<EnumType id="range">
+			<EnumVal ord="0">normal</EnumVal>
+			<EnumVal ord="1">high</EnumVal>
+			<EnumVal ord="2">low</EnumVal>
+			<EnumVal ord="3">high-high</EnumVal>
+			<EnumVal ord="4">low-low</EnumVal>
+		</EnumType>
+		<EnumType id="seqT">
+			<EnumVal ord="0">pos-neg-zero</EnumVal>
+			<EnumVal ord="1">dir-quad-zero</EnumVal>
+		</EnumType>
+		<EnumType id="phsid">
+			<EnumVal ord="0">A</EnumVal>
+			<EnumVal ord="1">B</EnumVal>
+			<EnumVal ord="2">C</EnumVal>
+		</EnumType>
+	</DataTypeTemplates>
+</SCL>

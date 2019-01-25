@@ -1,0 +1,8 @@
+
+[CtrModel]
+num=5
+mod0=status-only
+mod1=direct-with-normal-security
+mod2=sbo-with-normal-security
+mod3=direct-with-enhanced-security
+mod4=sbo-with-enhanced-security

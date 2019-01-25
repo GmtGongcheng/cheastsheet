@@ -1,0 +1,17 @@
+
+
+***********************************************************
+          LOGGING STARTED Mon Oct 19 15:30:46 2009
+***********************************************************
+
+2009-10-19  15:30:46.566 SLOGALWAYS (fo_main.c 267) 
+  Executing '../../bin/foundry_ld'
+  Input TDL file         : '../../mvl/usr/scl_srvr/uca_obj.odf'
+  Configuration file     : '../../mvl/util/foundry/linux/align.cfg'
+  Output 'C' file        : '../../mvl/usr/scl_srvr/uca_obj.c'
+  Output 'H' file        : '../../mvl/usr/scl_srvr/uca_obj.h'
+  Output 'LAP XML' file  : '../../mvl/usr/scl_srvr/lap_out.xml'
+  Output 'Lefttodo' file : '../../mvl/usr/scl_srvr/lefttodo.txt'
+
+2009-10-19  15:30:46.600 SLOGALWAYS (fo_write.c 1204) 
+  WRITING RUNTIME TYPES

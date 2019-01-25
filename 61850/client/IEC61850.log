@@ -1,0 +1,76 @@
+
+***********************************************************
+          FILE WRAPPED MON AUG 27 15:51:43 2012
+***********************************************************
+
+2012-08-27  15:51:43.580 MVLLOG_NERR (ai_sntp.c 909) 
+  Failed in call to send NTP request to the SNTP server. errcode=d806
+
+2012-08-27  15:51:53.603 MVLLOG_NERR (ai_sntp.c 909) 
+  Failed in call to send NTP request to the SNTP server. errcode=d806
+
+2012-08-27  15:52:05.347 MVLLOG_NERR (ai_sntp.c 909) 
+  Failed in call to send NTP request to the SNTP server. errcode=d806
+
+2012-08-27  15:52:15.409 MVLLOG_NERR (ai_sntp.c 909) 
+  Failed in call to send NTP request to the SNTP server. errcode=d806
+
+2012-08-27  15:52:27.112 MVLLOG_NERR (ai_sntp.c 909) 
+  Failed in call to send NTP request to the SNTP server. errcode=d806
+
+2012-08-27  15:52:39.079 MVLLOG_NERR (ai_sntp.c 909) 
+  Failed in call to send NTP request to the SNTP server. errcode=d806
+
+2012-08-27  15:52:49.097 MVLLOG_NERR (ai_sntp.c 909) 
+  Failed in call to send NTP request to the SNTP server. errcode=d806
+
+2012-08-27  15:52:59.570 MVLLOG_NERR (ai_sntp.c 909) 
+  Failed in call to send NTP request to the SNTP server. errcode=d806
+
+2012-08-27  15:53:11.324 MVLLOG_NERR (ai_sntp.c 909) 
+  Failed in call to send NTP request to the SNTP server. errcode=d806
+
+2012-08-27  15:53:21.354 MVLLOG_NERR (ai_sntp.c 909) 
+  Failed in call to send NTP request to the SNTP server. errcode=d806
+
+2012-08-27  15:53:31.648 MVLLOG_NERR (ai_sntp.c 909) 
+  Failed in call to send NTP request to the SNTP server. errcode=d806
+
+2012-08-27  15:53:41.742 MVLLOG_NERR (ai_sntp.c 909) 
+  Failed in call to send NTP request to the SNTP server. errcode=d806
+
+2012-08-27  15:53:51.775 MVLLOG_NERR (ai_sntp.c 909) 
+  Failed in call to send NTP request to the SNTP server. errcode=d806
+
+2012-08-27  15:54:01.979 MVLLOG_NERR (ai_sntp.c 909) 
+  Failed in call to send NTP request to the SNTP server. errcode=d806
+
+2012-08-27  15:54:13.823 MVLLOG_NERR (ai_sntp.c 909) 
+  Failed in call to send NTP request to the SNTP server. errcode=d806
+
+2012-08-27  15:54:24.288 MVLLOG_NERR (ai_sntp.c 909) 
+  Failed in call to send NTP request to the SNTP server. errcode=d806
+
+2012-08-27  15:54:34.370 MVLLOG_NERR (ai_sntp.c 909) 
+  Failed in call to send NTP request to the SNTP server. errcode=d806
+
+***********************************************************
+          OLDEST DATA STARTS BELOW
+***********************************************************
+
+ never enabled
+
+2012-08-27  15:51:01.623 MVLLOG_NERR (mvl61850.c 1277) 
+  Write of GI for RptID='hmiLD0/LLN0$BR$brcbGOOSE02' FAILED because Rpt never enabled
+
+2012-08-27  15:51:02.933 COSP_LOG_ERR (cospmain.c 1013) 
+  ÍøÂç¶Ï¿ª xxxxxx
+
+2012-08-27  15:51:13.057 MVLLOG_NERR (ai_sntp.c 909) 
+  Failed in call to send NTP request to the SNTP server. errcode=d806
+
+2012-08-27  15:51:23.089 MVLLOG_NERR (ai_sntp.c 909) 
+  Failed in call to send NTP request to the SNTP server. errcode=d806
+
+2012-08-27  15:51:33.556 MVLLOG_NERR (ai_sntp.c 909) 
+  Failed in call to send NTP request to the SNTP server. errcode=d806

@@ -1,0 +1,5 @@
+<ReportControl name="TEMPLATE" rptID="TEMPLATE" datSet="TEMPLATE" buffered="false" confRev="1" intgPd="2000">
+	<TrgOps qchg="true" period="true"/>
+	<OptFields seqNum="true" timeStamp="true" dataSet="true" reasonCode="true"/>
+	<RptEnabled max="5"></RptEnabled>
+</ReportControl>

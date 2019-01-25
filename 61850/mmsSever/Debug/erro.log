@@ -1,0 +1,130 @@
+
+ERRO LOG TIME: Sys Time:  2018-7-22,19:29:27.27
+		FILE: mmsUsr\userleaf.c
+		LINE: 295
+		FUNC: u_custom_rd_ind
+		INFO: DATA mapping error: variable 'GGIO1' not mapped, 0
+
+
+ERRO LOG TIME: Sys Time:  2018-7-22,19:51:310.310
+		FILE: mmsUsr\userleaf.c
+		LINE: 295
+		FUNC: u_custom_rd_ind
+		INFO: DATA mapping error: variable 'GGIO1' not mapped, 0
+
+
+ERRO LOG TIME: Sys Time:  2018-7-22,23:0:336.336
+		FILE: mmsUsr\mms_usr.c
+		LINE: 516
+		FUNC: init_acse
+		INFO: mvl_start_acse() failed, err = 1.0.
+
+
+ERRO LOG TIME: Sys Time:  2018-7-22,23:56:249.249
+		FILE: mmsUsr\mms_usr.c
+		LINE: 516
+		FUNC: init_acse
+		INFO: mvl_start_acse() failed, err = 1.0.
+
+
+ERRO LOG TIME: Sys Time:  2018-7-22,28:57:729.729
+		FILE: mmsUsr\mms_usr.c
+		LINE: 760
+		FUNC: init_mms_envir
+		INFO: 
+ERROR: Something in SCL or DATAMAP configuration FAILED.
+
+
+ERRO LOG TIME: Sys Time:  2018-7-23,50:36:127.127
+		FILE: mmsUsr\mms_usr.c
+		LINE: 516
+		FUNC: init_acse
+		INFO: mvl_start_acse() failed, err = 13600.0.
+
+
+ERRO LOG TIME: Sys Time:  2018-7-31,5:46:262.262
+		FILE: mmsUsr\mms_usr.c
+		LINE: 516
+		FUNC: init_acse
+		INFO: mvl_start_acse() failed, err = 13600.0.
+
+
+ERRO LOG TIME: Sys Time:  2018-8-1,33:40:144.144
+		FILE: mmsUsr\mms_usr.c
+		LINE: 516
+		FUNC: init_acse
+		INFO: mvl_start_acse() failed, err = 13600.0.
+
+
+ERRO LOG TIME: Sys Time:  2018-8-1,50:7:871.871
+		FILE: mmsUsr\mms_usr.c
+		LINE: 516
+		FUNC: init_acse
+		INFO: mvl_start_acse() failed, err = 13600.0.
+
+
+ERRO LOG TIME: Sys Time:  2018-8-1,0:38:386.386
+		FILE: mmsUsr\mms_usr.c
+		LINE: 526
+		FUNC: init_acse
+		INFO: mvl_start_acse() failed, err = 13600.0.
+
+
+ERRO LOG TIME: Sys Time:  2018-8-8,46:57:55.55
+		FILE: state\stAPI.c
+		LINE: 20
+		FUNC: Read1BitState
+		INFO: ST 操作站:1, 配置站总数:1
+
+ERRO LOG TIME: Sys Time:  2018-8-8,11:54:400.400
+		FILE: state\stAPI.c
+		LINE: 20
+		FUNC: Read1BitState
+		INFO: ST 操作站:1, 配置站总数:1
+
+ERRO LOG TIME: Sys Time:  2018-8-8,18:17:824.824
+		FILE: mmsUsr\mms_usr.c
+		LINE: 521
+		FUNC: init_acse
+		INFO: mvl_start_acse() failed, err = 13600.0.
+
+
+ERRO LOG TIME: Sys Time:  2018-8-8,19:40:532.532
+		FILE: state\stAPI.c
+		LINE: 20
+		FUNC: Read1BitState
+		INFO: ST 操作站:1, 配置站总数:1
+
+ERRO LOG TIME: Sys Time:  2018-8-8,52:27:565.565
+		FILE: mmsUsr\mms_usr.c
+		LINE: 765
+		FUNC: init_mms_envir
+		INFO: 
+ERROR: Something in SCL or DATAMAP configuration FAILED.
+
+
+ERRO LOG TIME: Sys Time:  2018-8-8,21:4:868.868
+		FILE: mmsUsr\mms_usr.c
+		LINE: 521
+		FUNC: init_acse
+		INFO: mvl_start_acse() failed, err = 13600.0.
+
+
+ERRO LOG TIME: Sys Time:  2018-8-8,45:14:140.140
+		FILE: setting\setAPI.c
+		LINE: 27
+		FUNC: ReadProtRunSet
+		INFO: SG 操作序号:-3, 实际允许序号:[0,0]
+
+ERRO LOG TIME: Sys Time:  2018-8-8,49:15:312.312
+		FILE: setting\setAPI.c
+		LINE: 27
+		FUNC: ReadProtRunSet
+		INFO: SG 操作序号:-3, 实际允许序号:[253,275]
+
+ERRO LOG TIME: Sys Time:  2018-8-8,30:36:987.987
+		FILE: mmsUsr\mms_usr.c
+		LINE: 521
+		FUNC: init_acse
+		INFO: mvl_start_acse() failed, err = 13600.0.
+

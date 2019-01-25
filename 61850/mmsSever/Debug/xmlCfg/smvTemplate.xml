@@ -1,0 +1,3 @@
+<SampledValueControl name="TEMPLATE" datSet="TEMPLATE" smvID="TEMPLATE" smpRate="4000" nofASDU="1" multicast="true">
+	<SmvOpts sampleRate="true" refreshTime="false" sampleSynchronized="true"/>
+</SampledValueControl>
